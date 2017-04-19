@@ -2,7 +2,7 @@
   "name": "qa-task-03",
   "version": "0.0.1",
   "scripts": {
-    "test": "eslint . && mocha tests",
+    "test": "mocha tests",
     "cover": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha tests --report text-summary",
     "lint": "eslint ."
   },
