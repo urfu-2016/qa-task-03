@@ -10,5 +10,39 @@ describe('getPokerHand', () => {
         assert(actual, 'Покер');
     });
 
-    // Напишите тесты на ваш замечательный код здесь
+    it('should return `Каре` for [1, 1, 1, 1, 2]', () => {
+        const actual = getPokerHand([1, 1, 1, 1, 2]);
+
+        assert(actual, 'Каре');
+    });
+
+    it('should return `Фулл хаус` for [1, 1, 1, 2, 2]', () => {
+        const actual = getPokerHand([1, 1, 1, 2, 2]);
+
+        assert(actual, 'Фулл хаус');
+    });
+
+    it('should return `Тройка` for [1, 1, 1, 2, 3]', () => {
+        const actual = getPokerHand([1, 1, 1, 2, 3]);
+
+        assert(actual, 'Тройка');
+    });
+
+    it('should return `Две пары` for [1, 1, 2, 2, 3]', () => {
+        const actual = getPokerHand([1, 1, 2, 2, 3]);
+
+        assert(actual, 'Две пары');
+    });
+
+    it('should return `Пара` for [1, 1, 2, 3, 4]', () => {
+        const actual = getPokerHand([1, 1, 2, 3, 4]);
+
+        assert(actual, 'Пара');
+    });
+
+    it('should return `Наивысшее очко` for [1, 2, 3, 4, 5]', () => {
+        const actual = getPokerHand([1, 2, 3, 4, 5]);
+
+        assert(actual, 'Наивысшее очко');
+    });
 });

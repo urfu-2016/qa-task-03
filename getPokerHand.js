@@ -18,7 +18,7 @@ function getPokerHand(dice) {
     case 4:
         return 'Каре';
     case 3:
-        if (repetitions.contains(2)) {
+        if (repetitions.indexOf(2) >= 0) {
             return 'Фулл хаус';
         }
         return 'Тройка';
