@@ -8,7 +8,7 @@
  */
 function getPokerHand(dice) {
     if (arguments.length !== 1 || !Array.isArray((dice)) || dice.length !== 5) {
-        throw new Error('Неверный аргумент');
+        throw new Error('Неверные аргументы');
     }
     const repetitions = getRepetitions(dice);
     const maxCount = maxItem(repetitions);
@@ -23,8 +23,9 @@ function getPokerHand(dice) {
         }
         return 'Тройка';
     case 2:
+
         if (repetitions.filter(item => {
-            item === 2;
+            return item === 2;
         }).length === 2) {
             return 'Две пары';
         }
@@ -55,7 +56,7 @@ function getRepetitions(arr) {
 }
 
 /**
- * Возвращает наибольший элемент массива
+ * Возвращает наибольший элемент массива чисел
  *
  * @param {Array} arr
  * @return {Number}
