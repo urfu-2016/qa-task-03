@@ -24,23 +24,20 @@ function getPokerHand(dice) {
     }
 }
 
-function calc(x) {
-    const res = [];
-    var current = x[0];
-    var y = 0;
-    for (var i = 0; i < x.length; i++) {
-        if (current !== x[i]) {
-            current = x[i];
-            res.push(y * y);
-            y = 0;
+function calc(dice) {
+    return dice.reduce(function (res, item) {
+        var current = res.pop() || {item, count: 0};
+        if (current.item !== item) {
+            res.push(current);
+            current = {item, count: 0};
         }
-        y++;
-    }
-    res.push(y * y);
+        current.count++;
+        res.push(current);
 
-    return res.reduce(function (prev, curr) {
-        return prev + curr;
-    }, 0);
+        return res;
+    }, [])
+        .map(x => x.count * x.count)
+        .reduce((x, y) => x + y);
 }
 
 
