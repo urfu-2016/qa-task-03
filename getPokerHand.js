@@ -7,11 +7,17 @@
  * @returns {String} название комбинации
  */
 function getPokerHand(dice) {
-    if (arguments.length !== 1 || !Array.isArray((dice)) || dice.length !== 5) {
-        throw new Error('Неверные аргументы');
+    if (arguments.length !== 1) {
+        throw new Error('Неверное число аргументов');
+    }
+    if (!Array.isArray((dice))) {
+        throw new TypeError('Неверный тип аргумента');
+    }
+    if (dice.length !== 5) {
+        throw new Error('Неправильное число костей');
     }
     const repetitions = getRepetitions(dice);
-    const maxCount = maxItem(repetitions);
+    const maxCount = Math.max(...repetitions);
     switch (maxCount) {
     case 5:
         return 'Покер';
@@ -44,7 +50,7 @@ function getPokerHand(dice) {
 function getRepetitions(arr) {
     return arr.reduce((repetitions, current) => {
         if (current < 1 || current > 6) {
-            throw new Error('Неправильное значение');
+            throw new Error('Значение кости должно быть целым числом в диапазоне от 1 до 6');
         }
         repetitions[current-1]++;
 
@@ -53,19 +59,6 @@ function getRepetitions(arr) {
 
         return 0;
     }));
-}
-
-/**
- * Возвращает наибольший элемент массива чисел
- *
- * @param {Array} arr
- * @return {Number}
- */
-function maxItem(arr) {
-    return arr.reduce((current, item) => {
-
-        return item > current ? item : current;
-    }, 0);
 }
 
 module.exports = getPokerHand;

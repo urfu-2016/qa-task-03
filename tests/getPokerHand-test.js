@@ -49,30 +49,42 @@ describe('getPokerHand', () => {
     it('should throw Error for less than 5 arguments count', () => {
         const cb = () => getPokerHand([1, 2, 3, 4]);
 
-        assert.throws(cb, /Неверные аргументы/);
+        assert.throws(cb, /Неправильное число костей/);
     });
 
     it('should throw Error for more than 5 arguments count', () => {
         const cb = () => getPokerHand([1, 2, 3, 4, 5, 6]);
 
-        assert.throws(cb, /Неверные аргументы/);
+        assert.throws(cb, /Неправильное число костей/);
     });
 
-    it('should throw Error for not an array', () => {
+    it('should throw TypeError for not an array', () => {
+        const cb = () => getPokerHand(1);
+
+        assert.throws(cb, /Неверный тип аргумента/);
+    });
+
+    it('should throw Error for less than one argument', () => {
         const cb = () => getPokerHand();
 
-        assert.throws(cb, /Неверные аргументы/);
+        assert.throws(cb, /Неверное число аргументов/);
+    });
+
+    it('should throw Error for more than one argument', () => {
+        const cb = () => getPokerHand([1, 2, 3], [4, 5]);
+
+        assert.throws(cb, /Неверное число аргументов/);
     });
 
     it('should throw Error for dice values grater than 6', () => {
         const cb = () => getPokerHand([1, 2, 7, 4, 5]);
 
-        assert.throws(cb, /Неправильное значение/);
+        assert.throws(cb, /Значение кости должно быть целым числом в диапазоне от 1 до 6/);
     });
 
     it('should throw Error for dice values less than 1', () => {
         const cb = () => getPokerHand([1, 2, 0, 4, 5]);
 
-        assert.throws(cb, /Неправильное значение/);
+        assert.throws(cb, /Значение кости должно быть целым числом в диапазоне от 1 до 6/);
     });
 });
