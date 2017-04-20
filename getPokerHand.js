@@ -9,10 +9,10 @@ function getPokerHand(dice) {
     if (dice === null || dice === undefined)
         return null;
 
-    if (!Object.prototype.toString.call(dice).match('object Array'))
+    if (!Array.isArray(dice))
         throw new Error('Type error'); 
     
-    const isElemsNum = dice.every(item => (Object.prototype.toString.call(item).match('object Number')) && !isNaN(item))
+    const isElemsNum = dice.every(item => Number.isInteger(item));
     
      if (!isElemsNum)
         throw new Error('Type error'); 
@@ -32,7 +32,7 @@ function getPokerHand(dice) {
     else if (countsElem.includes(3)) return 'Тройка';
     else if (countsElem.includes(2) && countsElem.length === 3) return 'Две пары';
     else if (countsElem.includes(2)) return 'Пара';
-    else return Math.max.apply(null, dice);
+    else return Math.max(...dice);
 }
 
 module.exports = getPokerHand;
