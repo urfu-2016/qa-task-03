@@ -8,7 +8,6 @@ describe('getPokerHand', () => {
         assert.equal(actual, 'Покер');
     });
 
-
     it('should return `Каре` for [1, 1, 1, 1, 2]', () => {
         const actual = getPokerHand([1, 1, 1, 1, 2]);
 
@@ -20,7 +19,6 @@ describe('getPokerHand', () => {
 
         assert.equal(actual, 'Фулл хаус');
     });
-
 
     it('should return `Тройка` for [1, 1, 1, 2, 3]', () => {
         const actual = getPokerHand([1, 1, 1, 2, 3]);
@@ -72,10 +70,9 @@ describe('getPokerHand', () => {
         assert.throws(error, 'Incorrect arguments');
     });
 
-    it('should return `2` for [1, 2, 2]', () => {
-        var arr = [1, 2, 2];
+    it('should throw error for incorrect arguments', () => {
+        const error = () => getPokerHand(null);
 
-        assert.equal(arr.getCountIdentical(2), 2);
+        assert.throws(error, 'Incorrect arguments');
     });
-
 });
