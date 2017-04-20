@@ -6,8 +6,13 @@ Array.prototype.getCountIdentical = function (elem) {
     }, 0);
 };
 
-function checkInput(dice) {
-    if (!Array.isArray(dice) || arguments.length != 1) {
+/**
+ * Проверяем корректность колоды
+ *
+ * @param {Array} dice набор, для которых нужно определить комбинацию
+ */
+function checkDice(dice) {
+    if (!Array.isArray(dice)) {
         throw new Error('Incorrect arguments');
     }
 
@@ -20,8 +25,13 @@ function checkInput(dice) {
     }
 }
 
+/**
+ * Ищем комбинации пары, сета, одиночные карты
+ *
+ * @param {Array} dice набор, для которых нужно определить комбинацию
+ * @returns {Object} количество каждой найденной комбинации
+ */
 function getCombinations(dice) {
-    checkInput(dice);
 
     var combinations = {
         pair: 0,
@@ -52,6 +62,12 @@ function getCombinations(dice) {
     return combinations;
 }
 
+/**
+ * Проверяет наличие комбинации в колоде
+ *
+ * @param {Array} dice набор, для которых нужно определить комбинацию
+ * @returns {Boolean} Есть ли данная комбинация в колоде
+ */
 function isPoker(dice) {
     var firstCard = dice[0];
 
@@ -97,6 +113,12 @@ function isOnePair(dice) {
  * @returns {String} название комбинации
  */
 function getPokerHand(dice) {
+    if (arguments.length != 1) {
+        throw new Error('Incorrect arguments');
+    }
+
+    checkDice(dice);
+
     if (isPoker(dice)) {
         return 'Покер';
     }

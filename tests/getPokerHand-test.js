@@ -67,10 +67,15 @@ describe('getPokerHand', () => {
     });
 
     it('should throw error for incorrect arguments', () => {
-        const error = () => getPokerHand('Hi!');
+        const error = () => getPokerHand([1, 2, 3, 4, -1], 'Hi!');
 
         assert.throws(error, 'Incorrect arguments');
     });
 
-    // Напишите тесты на ваш замечательный код здесь
+    it('should return `2` for [1, 2, 2]', () => {
+        var arr = [1, 2, 2];
+
+        assert.equal(arr.getCountIdentical(2), 2);
+    });
+
 });
