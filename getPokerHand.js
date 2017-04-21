@@ -13,15 +13,15 @@ Array.prototype.getCountIdentical = function (elem) {
  */
 function checkDice(dice) {
     if (!Array.isArray(dice)) {
-        throw new Error('Incorrect arguments');
+        throw new TypeError('Incorrect arguments');
     }
 
     if (dice.length !== 5) {
-        throw new Error('Invalid length array');
+        throw new RangeError('Invalid length array');
     }
 
     if (Math.max.apply(Math, dice) > 5 || Math.min.apply(Math, dice) < 1) {
-        throw new Error('Array contains incorrect values');
+        throw new RangeError('Array contains incorrect values');
     }
 }
 
@@ -145,4 +145,5 @@ function getPokerHand(dice) {
 
     return 'Наивысшее очко';
 }
+
 module.exports = getPokerHand;
