@@ -79,12 +79,18 @@ describe('getPokerHand', () => {
     it('should throw Error for dice values grater than 6', () => {
         const cb = () => getPokerHand([1, 2, 7, 4, 5]);
 
-        assert.throws(cb, /Значение кости должно быть целым числом в диапазоне от 1 до 6/);
+        assert.throws(cb, /Значение кости должно быть в диапазоне от 1 до 6/);
     });
 
     it('should throw Error for dice values less than 1', () => {
         const cb = () => getPokerHand([1, 2, 0, 4, 5]);
 
-        assert.throws(cb, /Значение кости должно быть целым числом в диапазоне от 1 до 6/);
+        assert.throws(cb, /Значение кости должно быть в диапазоне от 1 до 6/);
+    });
+
+    it('should throw Error if 5 elements-array contains string', () => {
+        const cb = () => getPokerHand([1, 2, '3', 4, 5]);
+
+        assert.throws(cb, /Значение кости должно быть целым числом/);
     });
 });

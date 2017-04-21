@@ -49,8 +49,11 @@ function getPokerHand(dice) {
  */
 function getRepetitions(arr) {
     return arr.reduce((repetitions, current) => {
+        if (typeof current !== 'number') {
+            throw new Error('Значение кости должно быть целым числом');
+        }
         if (current < 1 || current > 6) {
-            throw new Error('Значение кости должно быть целым числом в диапазоне от 1 до 6');
+            throw new Error('Значение кости должно быть в диапазоне от 1 до 6');
         }
         repetitions[current-1]++;
 
