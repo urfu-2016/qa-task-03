@@ -64,12 +64,12 @@ describe('getPokerHand', () => {
             assert.throws(cb, /Аргумент getPokerHand должен быть массивом/);
         });
 
-        it('should throw Error if argument array contain less than 5 arguments', () => {
+        it('should throw Error if argument array contain less than 5 elements', () => {
             const cb = () => getPokerHand([3, 4, 1, 4]);
             assert.throws(cb, /Аргумент getPokerHand должен быть массивом ровно из пяти элементов/);
         });
 
-        it('should throw Error if argument array contain more than 5 arguments', () => {
+        it('should throw Error if argument array contain more than 5 elements', () => {
             const cb = () => getPokerHand([3, 4, 1, 4, 3, 3]);
             assert.throws(cb, /Аргумент getPokerHand должен быть массивом ровно из пяти элементов/);
         });
