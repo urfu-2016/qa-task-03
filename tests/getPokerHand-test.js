@@ -34,11 +34,11 @@ describe('getPokerHand errors', () => {
     });
     it('should throw error if dice contain integer value less than 1', () => {
         getPokerHandError([[1, 3, 0, 3, 1]],
-          /Dice array must contain only numbers between 1 and 5/)
+          /Dice array must contain only numbers between 1 and 6/)
     });
     it('should throw error if dice contain integer value more than 5', () => {
         getPokerHandError([[1, 3, 10, 3, 1]],
-          /Dice array must contain only numbers between 1 and 5/)
+          /Dice array must contain only numbers between 1 and 6/)
     });
 });
 describe('getPokerHand', () => {

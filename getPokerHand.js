@@ -45,8 +45,8 @@ function getPokerHand(dice) {
         if (!Number.isInteger(card)) {
             throw new Error("Dice array must contain only integer numbers numbers")
         }
-        if (card < 1 || card > 5) {
-            throw new Error("Dice array must contain only numbers between 1 and 5")
+        if (card < 1 || card > 6) {
+            throw new Error("Dice array must contain only numbers between 1 and 6")
         }
     })
     
