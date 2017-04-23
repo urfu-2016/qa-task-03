@@ -6,11 +6,15 @@
  */
 function getPokerHand(dice)
 {
+    if (!Array.isArray(dice))
+        throw new Error('The argument must be an array!');
+    if (dice.length !== 5)
+        throw new Error('The array must contain 5 elements!');
     var numberOfValues = [0,0,0,0,0,0];
     dice.forEach(function (item)
     {
-        if (typeof item !== 'number')
-            throw new Error('The result of the dice should be a number!');
+        if (typeof item !== 'number' || (item ^ 0) !== item)
+            throw new Error('The result of the dice must be an integer!');
         if (item < 1)
             throw new Error('The result of the dice can`t be less than 1!');
         if (item > 6)
@@ -28,14 +32,12 @@ function getPokerHand(dice)
         case 4:
             return 'Каре';
         case 3:
-            numberOfValues.shift();
-            if (numberOfValues[0] === 2)
+            if (numberOfValues[1] === 2)
                 return 'Фулл хаус';
             else
                 return 'Тройка';
         case 2:
-            numberOfValues.shift();
-            if (numberOfValues[0] === 2)
+            if (numberOfValues[1] === 2)
                 return 'Две пары';
             else
                 return 'Пара';
