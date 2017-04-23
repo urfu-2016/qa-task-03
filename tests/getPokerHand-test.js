@@ -185,42 +185,114 @@ describe('GetPokerHand', () =>
 
     describe('BadData', () =>
     {
-        describe('NotANamberData', () =>
+        describe('NotAnArrayData', () =>
         {
-            it('Should throw error when data is not a number for ["", 1, 2, 3, 4]', () =>
+            it('Should throw error when data is not an array for "IAmArray"', () =>
+            {
+                const cb = () => getPokerHand("IAmArray");
+                assert.throws(cb, /The argument must be an array!/);
+            });
+
+            it('Should throw error when data is not an array for true', () =>
+            {
+                const cb = () => getPokerHand(true);
+                assert.throws(cb, /The argument must be an array!/);
+            });
+
+            it('Should throw error when data is not an array for undefined', () =>
+            {
+                const cb = () => getPokerHand(undefined);
+                assert.throws(cb, /The argument must be an array!/);
+            });
+
+            it('Should throw error when data is not an array for null', () =>
+            {
+                const cb = () => getPokerHand(null);
+                assert.throws(cb, /The argument must be an array!/);
+            });
+        });
+
+        describe('Not5ElementsInData', () =>
+        {
+            it('Should throw error when data length is not 5 for [0, 1, 2, 3, 4, 5]', () =>
+            {
+                const cb = () => getPokerHand([0, 1, 2, 3, 4, 5]);
+                assert.throws(cb, /The array must contain 5 elements!/);
+            });
+
+            it('Should throw error when data length is not 5 for []', () =>
+            {
+                const cb = () => getPokerHand([]);
+                assert.throws(cb, /The array must contain 5 elements!/);
+            });
+
+            it('Should throw error when data length is not 5 for [0, 1, 2]', () =>
+            {
+                const cb = () => getPokerHand([0, 1, 2]);
+                assert.throws(cb, /The array must contain 5 elements!/);
+            });
+        });
+
+        describe('NotAnIntegerData', () =>
+        {
+            it('Should throw error when data is not an integer for [1, 1, 2, -5.7, 4]', () =>
+            {
+                const cb = () => getPokerHand([1, 1, 2, -5.7, 4]);
+                assert.throws(cb, /The result of the dice must be an integer!/);
+            });
+
+            it('Should throw error when data is not an integer for [3.5, 1, 2, 3, 4]', () =>
+            {
+                const cb = () => getPokerHand([3.5, 1, 2, 3, 4]);
+                assert.throws(cb, /The result of the dice must be an integer!/);
+            });
+
+            it('Should throw error when data is not an integer for ["", 1, 2, 3, 4]', () =>
             {
                 const cb = () => getPokerHand(["", 1, 2, 3, 4]);
-                assert.throws(cb, /The result of the dice should be a number!/);
+                assert.throws(cb, /The result of the dice must be an integer!/);
             });
 
-            it('Should throw error when data is not a number for ["0", 1, 2, 3, 4]', () =>
+            it('Should throw error when data is not an integer for ["0", 1, 2, 3, 4]', () =>
             {
                 const cb = () => getPokerHand(["0", 1, 2, 3, 4]);
-                assert.throws(cb, /The result of the dice should be a number!/);
+                assert.throws(cb, /The result of the dice must be an integer!/);
             });
 
-            it('Should throw error when data is not a number for ["NAN", 1, 2, 3, 4]', () =>
+            it('Should throw error when data is not an integer for ["NAN", 1, 2, 3, 4]', () =>
             {
                 const cb = () => getPokerHand(["NAN", 1, 2, 3, 4]);
-                assert.throws(cb, /The result of the dice should be a number!/);
+                assert.throws(cb, /The result of the dice must be an integer!/);
             });
 
-            it('Should throw error when data is not a number for [1, 2, true, 3, 4]', () =>
+            it('Should throw error when data is not an integer for [1, 2, true, 3, 4]', () =>
             {
                 const cb = () => getPokerHand([1, 2, true, 3, 4]);
-                assert.throws(cb, /The result of the dice should be a number!/);
+                assert.throws(cb, /The result of the dice must be an integer!/);
             });
 
-            it('Should throw error when data is not a number for [1, 2, 3, 4, undefined]', () =>
+            it('Should throw error when data is not an integer for [1, 2, 3, 4, undefined]', () =>
             {
                 const cb = () => getPokerHand([1, 2, 3, 4, undefined]);
-                assert.throws(cb, /The result of the dice should be a number!/);
+                assert.throws(cb, /The result of the dice must be an integer!/);
             });
 
-            it('Should throw error when data is not a number for [1, 2, 3, null, 4]', () =>
+            it('Should throw error when data is not an integer for [1, 2, 3, null, 4]', () =>
             {
                 const cb = () => getPokerHand([1, 2, 3, null, 4]);
-                assert.throws(cb, /The result of the dice should be a number!/);
+                assert.throws(cb, /The result of the dice must be an integer!/);
+            });
+
+            it('Should throw error when data is not an integer for [1, 2, 3, -Infinity, 4]', () =>
+            {
+                const cb = () => getPokerHand([1, 2, 3, -Infinity, 4]);
+                assert.throws(cb, /The result of the dice must be an integer!/);
+            });
+
+            it('Should throw error when data is not an integer for [1, 2, Infinity, 3, 4]', () =>
+            {
+                const cb = () => getPokerHand([1, 2, Infinity, 3, 4]);
+                assert.throws(cb, /The result of the dice must be an integer!/);
             });
         });
 
@@ -237,12 +309,6 @@ describe('GetPokerHand', () =>
                 const cb = () => getPokerHand([1, 2, -35, 3, 4]);
                 assert.throws(cb, /The result of the dice can`t be less than 1!/);
             });
-
-            it('Should throw error when data less then 1 for [1, 2, 3, -Infinity, 4]', () =>
-            {
-                const cb = () => getPokerHand([1, 2, 3, -Infinity, 4]);
-                assert.throws(cb, /The result of the dice can`t be less than 1!/);
-            });
         });
 
         describe('MoreThen6Data', () =>
@@ -253,9 +319,9 @@ describe('GetPokerHand', () =>
                 assert.throws(cb, /The result of the dice can`t be more than 6!/);
             });
 
-            it('Should throw error when data more then 6 for [1, 2, Infinity, 3, 4]', () =>
+            it('Should throw error when data more then 6 for [1, 2, 231241, 4, 3]', () =>
             {
-                const cb = () => getPokerHand([1, 2, Infinity, 3, 4]);
+                const cb = () => getPokerHand([1, 2, 231241, 4, 3]);
                 assert.throws(cb, /The result of the dice can`t be more than 6!/);
             });
         });
