@@ -5,43 +5,43 @@ describe('getPokerHand', () => {
     it('should throw error when no dice given', () => {
         const cb = () => getPokerHand();
 
-        assert.throws(cb, Error);
+        assert.throws(cb, /Cannot read property 'length' of undefined/);
     });
 
     it('should throw error when dice has less than 5 elements', () => {
         const cb = () => getPokerHand([1, 1, 1, 1]);
 
-        assert.throws(cb, Error);
+        assert.throws(cb, /Wrong amount of dices/);
     });
 
     it('should throw error when dice has more than 5 elements', () => {
         const cb = () => getPokerHand([1, 1, 1, 1, 2, 2]);
 
-        assert.throws(cb, Error);
+        assert.throws(cb, /Wrong amount of dices/);
     });
 
     it('should throw error when dice has not int element', () => {
         const cb = () => getPokerHand(['1', 3, 4, 4, 5]);
 
-        assert.throws(cb, Error);
+        assert.throws(cb, /Dice should contain int numbers from 1 to 6/);
     });
 
     it('should throw error when dice has not int element', () => {
         const cb = () => getPokerHand([1, 3, 4, 4, 5.2]);
 
-        assert.throws(cb, Error);
+        assert.throws(cb, /Dice should contain int numbers from 1 to 6/);
     });
 
     it('should throw error when dice has element higher than 6', () => {
         const cb = () => getPokerHand([1, 3, 4, 4, 7]);
 
-        assert.throws(cb, Error);
+        assert.throws(cb, /Dice should contain int numbers from 1 to 6/);
     });
 
     it('should throw error when dice has element lower than 1', () => {
         const cb = () => getPokerHand([0, 3, 4, 4, 5]);
 
-        assert.throws(cb, Error);
+        assert.throws(cb, /Dice should contain int numbers from 1 to 6/);
     });
 
     it('should return `Покер` for [1, 1, 1, 1, 1]', () => {

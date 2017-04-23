@@ -45,10 +45,7 @@ function getComboName(combo) {
         return 'Наивысшее очко';
     if (combo.length == 1)
         return singleValueCombos[combo[0]];
-    if (combo.length == 2)
-        return doubleValueCombos[combo.reduce(function (acc, value) {
-            return acc + value;
-        })];
+    return doubleValueCombos[combo[0] + combo[1]];
 }
 
 module.exports = getPokerHand;
