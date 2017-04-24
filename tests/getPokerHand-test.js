@@ -3,7 +3,7 @@
 const assert = require('assert');
 const getPokerHand = require('../getPokerHand');
 
-describe('getPokerHand bad tests', () => {
+describe('getPokerHand exception tests', () => {
     it('should return exception when call func without argument', () => {
         const actual = () => getPokerHand();
 
@@ -22,6 +22,12 @@ describe('getPokerHand bad tests', () => {
         assert.throws(actual, Error);
     });
 
+    it('should return exception when call func with array which contains greater then 5 elements', () => {
+        const actual = () => getPokerHand([1, 2, 3, 4, 5, 6]);
+
+        assert.throws(actual, Error);
+    });
+
     it('should return exception when call func with array which contains not only integers', () => {
         const actual = () => getPokerHand([1, 2, 3, 4, '5']);
 
@@ -35,7 +41,7 @@ describe('getPokerHand bad tests', () => {
     });
 });
 
-describe('getPokerHand good tests', () => {
+describe('getPokerHand tests', () => {
     it('should return `Покер` for [1, 1, 1, 1, 1]', () => {
         const actual = getPokerHand([1, 1, 1, 1, 1]);
 
