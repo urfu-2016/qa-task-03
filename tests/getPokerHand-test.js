@@ -75,12 +75,6 @@ describe('getPokerHand', () => {
         assert.throws(cb, /Dice should be an array type/);
     });
 
-    it('should throws error when called without arguments', () => {
-        const cb = () => getPokerHand();
-
-        assert.throws(cb, /Dice should be an array type/);
-    });
-
     it('should throws error when dice elements are double values', () => {
         const cb = () => getPokerHand([1.0, 2.5, 1.2, 4.0, 5.2]);
 
