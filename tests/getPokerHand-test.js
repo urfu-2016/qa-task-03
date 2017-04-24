@@ -44,14 +44,27 @@ describe('getPokerHand', () => {
         assert.equal(actual, 'Наивысшее очко');
     });
 
-    it('should throws error when dice value not in [1, 6]', () => {
-        const cb = () => getPokerHand([0, 1, 2, 3, 7]);
+    it('should throws error when dice value less then 1', () => {
+        const cb = () => getPokerHand([0, 1, 2, 3, 4]);
 
         assert.throws(cb, /Dice should contains integer values from 1 to 6/);
     });
 
-    it('should throws error when dice count not equal to 5', () => {
+
+    it('should throws error when dice value more then 6', () => {
+        const cb = () => getPokerHand([1, 2, 3, 4, 7]);
+
+        assert.throws(cb, /Dice should contains integer values from 1 to 6/);
+    });
+
+    it('should throws error when dice count less then 5', () => {
         const cb = () => getPokerHand([1, 1, 1, 1]);
+
+        assert.throws(cb, /Dice count should be 5/);
+    });
+
+    it('should throws error when dice count more then 5', () => {
+        const cb = () => getPokerHand([1, 2, 3, 4, 5, 6, 1]);
 
         assert.throws(cb, /Dice count should be 5/);
     });
@@ -62,7 +75,13 @@ describe('getPokerHand', () => {
         assert.throws(cb, /Dice should be an array type/);
     });
 
-    it('should throws error when dice elements are not integer values', () => {
+    it('should throws error when called without arguments', () => {
+        const cb = () => getPokerHand();
+
+        assert.throws(cb, /Dice should be an array type/);
+    });
+
+    it('should throws error when dice elements are double values', () => {
         const cb = () => getPokerHand([1.0, 2.5, 1.2, 4.0, 5.2]);
 
         assert.throws(cb, /Dice should contains integer values from 1 to 6/);

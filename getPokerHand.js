@@ -16,7 +16,7 @@ function getPokerHand(dice) {
         throw new RangeError(`Dice count should be ${diceCount}`)
     }
     if (dice.some(value => !Number.isInteger(value) || value < minValue || value > maxValue)) {
-        throw new Error(`Dice should contains integer values from 1 to 6`)
+        throw new Error(`Dice should contains integer values from ${minValue} to ${maxValue}`)
     }
 
     var countByValue = {};
