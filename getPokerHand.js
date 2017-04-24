@@ -25,7 +25,7 @@ function getPokerHand(dice) {
         }
     });
 
-    let countOfNumbers = [0, 0, 0, 0, 0];
+    let countOfNumbers = [0, 0, 0, 0, 0, 0];
     let inArray = num => countOfNumbers.indexOf(num) !== -1;
 
     dice.forEach((num) => {
