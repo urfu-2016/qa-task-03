@@ -58,8 +58,8 @@ function validate(dice) {
 	}
 	
 	dice.forEach(item => {
-		if (!Number.isInteger(item) || item < 1 || item > 5) {
-			throw new Error ('Array item should be integer in range from 1 to 5');
+		if (!Number.isInteger(item) || item < 1 || item > 6) {
+			throw new Error ('Array item should be integer in range from 1 to 6');
 		}
 	});
 }

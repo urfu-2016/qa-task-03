@@ -62,21 +62,21 @@ describe('getPokerHand', () => {
 		assert.throws(cb, /Length should be 5/);
 	});
 	
-	it ('shoud throw error for [1, 5, 1, 2, 6]', () => {
-		const cb = () => getPokerHand([1, 5, 1, 2, 6]);
+	it ('shoud throw error for [1, 5, 1, 2, 7]', () => {
+		const cb = () => getPokerHand([1, 5, 1, 2, 7]);
 
-		assert.throws(cb, /Array item should be integer in range from 1 to 5/);
+		assert.throws(cb, /Array item should be integer in range from 1 to 6/);
 	});
 	
 	it ('shoud throw error for [1, 5, 1, 2, 0]', () => {
 		const cb = () => getPokerHand([1, 5, 1, 2, 0]);
 
-		assert.throws(cb, /Array item should be integer in range from 1 to 5/);
+		assert.throws(cb, /Array item should be integer in range from 1 to 6/);
 	});
 	
 	it ('shoud throw error for [1, 5, 1, 2, \'d\']', () => {
 		const cb = () => getPokerHand([1, 5, 1, 2, 'd']);
 
-		assert.throws(cb, /Array item should be integer in range from 1 to 5/);
+		assert.throws(cb, /Array item should be integer in range from 1 to 6/);
 	});
 });
