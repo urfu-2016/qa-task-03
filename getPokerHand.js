@@ -20,6 +20,12 @@ function checkDice(dice) {
         throw new RangeError('Invalid length array');
     }
 
+    if (!dice.every(card => {
+        return Number.isInteger(card);
+        })) {
+        throw new RangeError('Array contains incorrect values');
+    }
+
     if (Math.max.apply(Math, dice) > 5 || Math.min.apply(Math, dice) < 1) {
         throw new RangeError('Array contains incorrect values');
     }

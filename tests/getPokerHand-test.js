@@ -65,9 +65,21 @@ describe('getPokerHand', () => {
     });
 
     it('should throw error for incorrect arguments', () => {
-        const error = () => getPokerHand([1, 2, 3, 4, -1], 'Hi!');
+        const error = () => getPokerHand([1, 2, 3, 4, 5], 'Hi!');
 
         assert.throws(error, /Incorrect arguments/);
+    });
+
+    it('should throw error for array contains incorrect values (double value)', () => {
+        const error = () => getPokerHand([1, 2, 3, 4, 5.3]);
+
+        assert.throws(error, /Array contains incorrect values/);
+    });
+
+    it('should throw error for array contains incorrect values (string value)', () => {
+        const error = () => getPokerHand([1, 2, 3, 4, '5']);
+
+        assert.throws(error, /Array contains incorrect values/);
     });
 
     it('should throw error for incorrect arguments', () => {
