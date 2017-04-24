@@ -7,6 +7,10 @@
   },
   "author": "Sergey Zhigalov <zhigalov@yandex-team.ru>",
   "license": "MIT",
+  "repository": {
+	"type": "git",
+	"url": "git://github.com/NameOff/qa-task-03.git"
+  },
   "devDependencies": {
     "istanbul": "0.4.5",
     "mocha": "3.2.0"
