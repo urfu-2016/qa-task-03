@@ -7,7 +7,11 @@
 function getPokerHand(dice) {
 
     if (!Array.isArray(dice)) {
-        throw new Error('Dice is not an array')
+        throw new Error('Dice is not an array');
+    }
+
+    if (dice.length !== 5) {
+        throw new Error('Array must have 5 elements');
     }
 
     const results = {
