@@ -2,14 +2,26 @@ const assert = require('assert');
 const getPokerHand = require('../getPokerHand');
 
 describe('getPokerHand', () => {
+  it('should return `Error` for empty arguments', () => {
+    const actual = () => getPokerHand();
+
+    assert.throws(actual, 'You must provide array as a first argument of getPokerHand function');
+  })
+
   it('should return `Error` for non array arguments', () => {
     const actual = () => getPokerHand(null);
 
     assert.throws(actual, 'You must provide array as a first argument of getPokerHand function');
   })
 
-  it('should return `Error` for array with incorrect length', () => {
+  it('should return `Error` for array with larger length', () => {
     const actual = () => getPokerHand([1, 2, 3, 4, 5, 6]);
+
+    assert.throws(actual, 'Dices array must content 5 elements');
+  })
+
+  it('should return `Error` for array with smaller length', () => {
+    const actual = () => getPokerHand([1, 2, 3, 4]);
 
     assert.throws(actual, 'Dices array must content 5 elements');
   })
@@ -20,8 +32,14 @@ describe('getPokerHand', () => {
     assert.throws(actual, 'Dice mist be an integer');
   })
 
-  it('should return `Error` for array with out of range dice values', () => {
+  it('should return `Error` for array with dice values < 1', () => {
     const actual = () => getPokerHand([1, 2, 3, 4, -5]);
+
+    assert.throws(actual, 'Dice can only have 1, 2, 3, 4, 5, 6 values');
+  })
+
+  it('should return `Error` for array with dice values > 6', () => {
+    const actual = () => getPokerHand([1, 2, 3, 4, 10]);
 
     assert.throws(actual, 'Dice can only have 1, 2, 3, 4, 5, 6 values');
   })
@@ -62,9 +80,9 @@ describe('getPokerHand', () => {
     assert.equal(actual, 'Пара');
   });
 
-  it('should return `5` for [1, 2, 3, 4, 5]', () => {
+  it('should return `Наивысшее очко` for [1, 2, 3, 4, 5]', () => {
     const actual = getPokerHand([1, 2, 3, 4, 5]);
 
-    assert.equal(actual, '5');
+    assert.equal(actual, 'Наивысшее очко');
   });
 });

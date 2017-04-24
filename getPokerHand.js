@@ -13,7 +13,7 @@ function getPokerHand(dices) {
     throw new Error('Array must content 5 elements');
   }
 
-  let countRepeatedHsh = dices.reduce((memo, dice) => {
+  const countRepeatedHsh = dices.reduce((memo, dice) => {
     if (!Number.isInteger(dice)) {
       throw new Error('Dice mist be an integer');
     }
@@ -28,7 +28,7 @@ function getPokerHand(dices) {
     return memo
    }, {});
 
-  let countRepeatedValues = Object.keys(countRepeatedHsh).map((item) => countRepeatedHsh[item]);
+  const countRepeatedValues = Object.keys(countRepeatedHsh).map((item) => countRepeatedHsh[item]);
 
   if (countRepeatedValues.includes(5)) {
     return 'Покер';
@@ -43,7 +43,7 @@ function getPokerHand(dices) {
   } else if (countRepeatedValues.includes(2)) {
     return 'Пара';
   } else {
-    return Math.max(...dices);
+    return 'Наивысшее очко';
   }
 }
 
