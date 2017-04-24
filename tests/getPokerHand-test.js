@@ -59,8 +59,14 @@ describe('getPokerHand', () => {
         assert.throws(cb, /dice length should be equal to 5/);
     });
 
-    it('should throw Error when dice has not integer value', () => {
+    it('should throw Error when dice has string values', () => {
         let cb = () => getPokerHand([1, 2, 3, 4, '5']);
+
+        assert.throws(cb, /All dice values should be an integer numbers/);
+    });
+
+    it('should throw Error when dice has double values', () => {
+        let cb = () => getPokerHand([1, 2, 3, 4, 5.5]);
 
         assert.throws(cb, /All dice values should be an integer numbers/);
     });
