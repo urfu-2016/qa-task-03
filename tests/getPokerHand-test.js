@@ -123,6 +123,10 @@ describe('getPokerHand', () => {
     });
     describe('Bad data', () => {
         describe('Not array', () => {
+            it("Should throw error when there are no args", () => {
+                const cb = () => getPokerHand();
+                assert.throws(cb, 'Ожидался массив');
+            });
             it("Should throw error when arg isn`t an array for 'string'", () => {
                 const cb = () => getPokerHand('string');
                 assert.throws(cb, 'Ожидался массив');

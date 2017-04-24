@@ -16,7 +16,7 @@ function getPokerHand(dice) {
         throw new Error('Ожидалось 5 значений');
 
     dice.forEach(function(item) {
-        if (typeof item !== 'number' || !Number.isInteger(item))
+        if (!Number.isInteger(item))
             throw  new Error('Значения должны быть целыми числами');
         if (item < 1 || item > 6)
             throw new Error('Значения должны быть от 1 до 6');
@@ -36,10 +36,10 @@ function getPokerHand(dice) {
             }
             return 'Тройка';
         case 2:
-
-            if (numberOfRepetitions.filter(item => {
+            var isTwoPairs = numberOfRepetitions.filter(item => {
                     return item === 2;
-                }).length === 2)
+                }).length === 2;
+            if (isTwoPairs)
                 return 'Две пары';
             return 'Пара';
         default:
