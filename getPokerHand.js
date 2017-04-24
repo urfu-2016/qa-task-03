@@ -26,10 +26,7 @@ function validateDice(dice) {
         throw new Error('Размер массива должен быть равен 5');
     }
     dice.forEach((item) => {
-        if (typeof item !== 'number') {
-            throw new Error('Значение кости должно быть числом');
-        }
-        if (item < 1 || item > 6) {
+        if (!Number.isInteger(item) || item < 1 || item > 6) {
             throw new Error('Значение кости должно быть целым числом от 1 до 6');
         }
     });
@@ -63,7 +60,7 @@ function getCombination(repetitionsNumber) {
         case 4:
             return 'Каре';
         case 3:
-            if (repetitionsNumber.indexOf(2) != -1) {
+            if (repetitionsNumber.indexOf(2) !== -1) {
                 return 'Фулл хаус';
             }
             return 'Тройка';

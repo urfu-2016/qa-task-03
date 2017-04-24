@@ -50,14 +50,26 @@ describe('getPokerHand', () => {
         assert.throws(cb, /Функция принимает только один аргумент/);
     });
 
+    it('should throw error when no arguments given', () => {
+        const cb = () => getPokerHand();
+
+        assert.throws(cb, /Функция принимает только один аргумент/);
+    });
+
     it('should throw error when dice is not array', () => {
         const cb = () => getPokerHand("this is dice");
 
         assert.throws(cb, /Аргумент должен быть массивом/);
     });
 
-    it('should throw error when dice length is not equals five', () => {
+    it('should throw error when dice length is greater than five', () => {
         const cb = () => getPokerHand([1, 1, 1, 1, 1, 1]);
+
+        assert.throws(cb, /Размер массива должен быть равен 5/);
+    });
+
+    it('should throw error when dice length is less than five', () => {
+        const cb = () => getPokerHand([1, 1, 1, 1]);
 
         assert.throws(cb, /Размер массива должен быть равен 5/);
     });
@@ -65,11 +77,17 @@ describe('getPokerHand', () => {
     it('should throw error when dice contains not a number', () => {
         const cb = () => getPokerHand([1, 1, 1, 1, "NaN"]);
 
-        assert.throws(cb, /Значение кости должно быть числом/);
+        assert.throws(cb, /Значение кости должно быть целым числом от 1 до 6/);
     });
 
     it('should throw error when dice contains element less than one', () => {
         const cb = () => getPokerHand([1, 1, 1, 1, 0]);
+
+        assert.throws(cb, /Значение кости должно быть целым числом от 1 до 6/);
+    });
+
+    it('should throw error when dice contains decimal element', () => {
+        const cb = () => getPokerHand([1, 1, 1, 1, 10.25]);
 
         assert.throws(cb, /Значение кости должно быть целым числом от 1 до 6/);
     });
