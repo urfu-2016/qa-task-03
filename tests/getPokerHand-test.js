@@ -1,6 +1,7 @@
 const assert = require('assert');
 const getPokerHand = require('../getPokerHand');
 
+
 describe('getPokerHand', () => {
     it('should return `Покер` for [1, 1, 1, 1, 1]', () => {
         const actual = getPokerHand([1, 1, 1, 1, 1]);
@@ -8,5 +9,69 @@ describe('getPokerHand', () => {
         assert.equal(actual, 'Покер');
     });
 
-    // Напишите тесты на ваш замечательный код здесь
+    it('should return `Каре` for [2, 1, 1, 1, 1]', () => {
+        const actual = getPokerHand([2, 1, 1, 1, 1]);
+
+        assert.equal(actual, 'Каре');
+    });
+
+    it('should return `Фулл хаус` for [1, 1, 1, 2, 2]', () => {
+        const actual = getPokerHand([1, 1, 1, 2, 2]);
+
+        assert.equal(actual, 'Фулл хаус');
+    });
+
+    it('should return `Тройка` for [1, 1, 1, 2, 3]', () => {
+        const actual = getPokerHand([1, 1, 1, 2, 3]);
+
+        assert.equal(actual, 'Тройка');
+    });
+
+    it('should return `Две пары` for [1, 1, 2, 2, 3]', () => {
+        const actual = getPokerHand([1, 1, 2, 2, 3]);
+
+        assert.equal(actual, 'Две пары');
+    });
+
+    it('should return `Пара` for [1, 1, 4, 2, 3]', () => {
+        const actual = getPokerHand([1, 1, 4, 2, 3]);
+
+        assert.equal(actual, 'Пара');
+    });
+
+    it('should return `Наивысшее очко` for [1, 2, 3, 4, 5]', () => {
+        const actual = getPokerHand([1, 2, 3, 4, 5]);
+
+        assert.equal(actual, 'Наивысшее очко');
+    });
+
+    it('should throw TypeError when dice is not an array', () => {
+        cb = () => getPokerHand(null);
+
+        assert.throws(cb, /dice should be an array/);
+    });
+
+    it('should throw Error when dice length is not equal to 5', () => {
+        cb = () => getPokerHand([1, 2, 3]);
+
+        assert.throws(cb, /dice length should be equal to 5/);
+    });
+
+    it('should throw Error when dice has not integer value', () => {
+        cb = () => getPokerHand([1, 2, 3, 4, '5']);
+
+        assert.throws(cb, /All dice values should be an integer numbers/);
+    });
+
+    it('should throw RangeError when dice has value, which greater than 6', () => {
+        cb = () => getPokerHand([1, 2, 3, 4, 7]);
+
+        assert.throws(cb, /All dice values in dice should be greater or equal to 1 and less or equal to 6/);
+    });
+
+    it('should throw RangeError when dice has value, which less than 1', () => {
+        cb = () => getPokerHand([0, 2, 3, 4, 5]);
+
+        assert.throws(cb, /All dice values in dice should be greater or equal to 1 and less or equal to 6/);
+    });
 });
