@@ -6,12 +6,8 @@
  */
 function getPokerHand(dice) {
 
-    if (!Array.isArray(dice)) {
-        throw new Error('Dice is not an array');
-    }
-
-    if (dice.length !== 5) {
-        throw new Error('Array must have 5 elements');
+    if (!isValidInput(dice)) {
+        return '';
     }
 
     const results = {
@@ -24,16 +20,30 @@ function getPokerHand(dice) {
         '11': 'Наивысшее очко'
     };
 
-    const quantities = fillQuantities(dice);
+    const counts = fillCounts(dice);
 
-    const sortedKeys = Object.keys(quantities).sort((key1, key2) => {
-        return quantities[key2] - quantities[key1];
+    const sortedKeys = Object.keys(counts).sort((a, b) => {
+        return counts[b] - counts[a];
     });
 
-    return results['' + quantities[sortedKeys[0]] + quantities[sortedKeys[1]]];
+    return results['' + counts[sortedKeys[0]] + counts[sortedKeys[1]]];
 }
 
-function fillQuantities(dice) {
+function isValidInput(dice) {
+    if (!Array.isArray(dice)) {
+        throw new Error('Dice is not an array')
+    }
+
+    dice.forEach((value, index) => {
+        if (value !== parseInt(value) || value < 1 || value > 6) {
+            throw new Error(`Invalid dice at place ${index} with value ${value}`);
+        }
+    });
+
+    return true;
+}
+
+function fillCounts(dice) {
 
     let count = {
         1: 0,
@@ -44,11 +54,8 @@ function fillQuantities(dice) {
         6: 0
     };
 
-    dice.forEach((value, index) => {
-        if (value !== parseInt(value) || value < 1 || value > 6) {
-            throw new Error(`Invalid dice at place ${index} with value ${value}`);
-        }
-        count[value]++;
+    dice.forEach(cube => {
+        count[cube]++;
     });
 
     return count;

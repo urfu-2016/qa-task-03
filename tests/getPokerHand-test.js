@@ -54,34 +54,37 @@ describe('getPokerHand', () => {
         assert.equal(actual, results['1']);
     });
 
-    it(`should throw error when dice is not an array`, () => {
-        const cb = () => getPokerHand('hello');
-
-        assert.throws(cb, /Dice is not an array/);
+    it(`should throw error when dice is not a array`, () => {
+        try {
+            const actual = getPokerHand('hello');
+            throw new Error(`'getPokerHand' should throw error`)
+        } catch(error) {
+            assert.equal(error.message, 'Dice is not an array')
+        }
     });
-    it(`should throw error when dice is not an array`, () => {
-        const cb = () => getPokerHand(null);
-
-        assert.throws(cb, /Dice is not an array/);
+    it(`should throw error when dice is not a array`, () => {
+        try {
+            const actual = getPokerHand(null);
+            throw new Error(`'getPokerHand' should throw error`)
+        } catch(error) {
+            assert.equal(error.message, 'Dice is not an array')
+        }
     });
-    it(`should throw error when dice is not an array`, () => {
-        const cb = () => getPokerHand();
-
-        assert.throws(cb, /Dice is not an array/);
+    it(`should throw error when dice is not a array`, () => {
+        try {
+            const actual = getPokerHand();
+            throw new Error(`'getPokerHand' should throw error`)
+        } catch(error) {
+            assert.equal(error.message, 'Dice is not an array')
+        }
     });
-    it(`should throw error when one dice is not correct`, () => {
-        const cb = () => getPokerHand([6, 1, 2, 3, 7]);
-
-        assert.throws(cb, /Invalid dice at place 4 with value 7/);
+    it(`should throw error when one dice is not a correct`, () => {
+        try {
+            const actual = getPokerHand([6, 1, 2, 3, 7]);
+            throw new Error(`'getPokerHand' should throw error`)
+        } catch(error) {
+            assert.equal(error.message, 'Invalid dice at place 4 with value 7')
+        }
     });
-    it(`should throw error when one dice is not correct`, () => {
-        const cb = () => getPokerHand([6, 1, 2, 3, 0]);
 
-        assert.throws(cb, /Invalid dice at place 4 with value 0/);
-    });
-    it(`should throw error when dices count is not correct`, () => {
-        const cb = () => getPokerHand([]);
-
-        assert.throws(cb, /Array must have 5 elements/);
-    });
 });
