@@ -112,14 +112,21 @@ it('should throw error when count is not a number', () => {
 	
 it('should throw error when count is not a array', () => {
     try {
-        getPokerHand(34);
+        getPokerHand('34');
         throw new Error('`getPokerHand` should throw error')
     } catch (error) {
         assert.equal(error.message, 'Не массив');
     }
 });		
 	
-	
+it('should throw error when count more than one argument', () => {
+    try {
+        getPokerHand('34', 6);
+        throw new Error('`getPokerHand` should throw error')
+    } catch (error) {
+        assert.equal(error.message, 'Много аргументов');
+    }
+});		
 	
     // Напишите тесты на ваш замечательный код здесь
 });

@@ -5,7 +5,7 @@
  * @returns {String} название комбинации
  */ 
 function getPokerHand(dice) {
-	
+	if( arguments.length!=1){throw new Error('Много аргументов');}
 var isArr = Object.prototype.toString.call(dice) == '[object Array]';
     if(!isArr){throw new Error('Не массив');}
 	if(dice.length!=5){
