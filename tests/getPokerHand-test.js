@@ -7,6 +7,105 @@ describe('getPokerHand', () => {
 
         assert.equal(actual, 'Покер');
     });
+	it('should return `Каре` for [1, 1, 1, 5, 1]', () => {
+        const actual = getPokerHand([1, 1, 1, 5, 1]);
 
+        assert.equal(actual, 'Каре');
+    });
+	it('should return `Фулл хаус` for [1, 5, 1, 5, 1]', () => {
+        const actual = getPokerHand([1, 5, 1, 5, 1]);
+
+        assert.equal(actual, 'Фулл хаус');
+    });
+	it('should return `Тройка` for [1, 5, 1, 6, 1]', () => {
+        const actual = getPokerHand([1, 5, 1, 6, 1]);
+
+        assert.equal(actual, 'Тройка');
+    });
+	it('should return `Пара` for [1, 5, 3, 6, 1]', () => {
+        const actual = getPokerHand([1, 5, 3, 6, 1]);
+
+        assert.equal(actual, 'Пара');
+    });
+	it('should return `Две пары` for [1, 5, 3, 5, 1]', () => {
+        const actual = getPokerHand([1, 5, 3, 5, 1]);
+
+        assert.equal(actual, 'Две пары');
+    });
+	it('should return `Наивысшее очко` for [1, 5, 3, 2, 4]', () => {
+        const actual = getPokerHand([1, 5, 3, 2, 4]);
+
+        assert.equal(actual, 'Наивысшее очко');
+    });
+
+	
+	it('should throw error when entered is not an integer in the range from 1 to 6', () => {
+    try {
+        getPokerHand([1, 5, 3, 7, 4]);
+        throw new Error('`getPokerHand` should throw error')
+    } catch (error) {
+        assert.equal(error.message, '7 нет на ребре кубика');
+    }
+});
+	
+	it('should throw error when entered is not an integer in the range from 1 to 6', () => {
+    try {
+        getPokerHand([1, 5.6 , 3, 7, 4]);
+        throw new Error('`getPokerHand` should throw error')
+    } catch (error) {
+        assert.equal(error.message, '5.6 нет на ребре кубика');
+    }
+});
+	
+	it('should throw error when entered is not an integer in the range from 1 to 6', () => {
+    try {
+        getPokerHand([1, 0 , 3, 7, 4]);
+        throw new Error('`getPokerHand` should throw error')
+    } catch (error) {
+        assert.equal(error.message, '0 нет на ребре кубика');
+    }
+});
+    it('should throw error when entered is not an integer in the range from 1 to 6', () => {
+    try {
+        getPokerHand([1, -3 , 3, 7, 4]);
+        throw new Error('`getPokerHand` should throw error')
+    } catch (error) {
+        assert.equal(error.message, '-3 нет на ребре кубика');
+    }
+});
+
+it('should throw error when entered is not an integer in the range from 1 to 6', () => {
+    try {
+        getPokerHand([1, 10 , 3, 7, 4]);
+        throw new Error('`getPokerHand` should throw error')
+    } catch (error) {
+        assert.equal(error.message, '10 нет на ребре кубика');
+    }
+});
+
+it('should throw error when not entered 5 numbers', () => {
+    try {
+        getPokerHand([1, 4 , 3, 6, 4, 1]);
+        throw new Error('`getPokerHand` should throw error')
+    } catch (error) {
+        assert.equal(error.message, 'Введено не 5 чисел');
+    }
+});
+
+it('should throw error when not entered 5 numbers', () => {
+    try {
+        getPokerHand([1, 4 , 3, 6]);
+        throw new Error('`getPokerHand` should throw error')
+    } catch (error) {
+        assert.equal(error.message, 'Введено не 5 чисел');
+    }
+});
+	
+	
+	
+	
+	
+	
+	
     // Напишите тесты на ваш замечательный код здесь
 });
