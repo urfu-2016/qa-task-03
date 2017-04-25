@@ -2,6 +2,11 @@ const assert = require('assert');
 const getPokerHand = require('../getPokerHand');
 
 describe('getPokerHand', () => {
+	it('should return `Увы ничего` for [1, 2, 3, 5, 6]', () => {
+        const actual = getPokerHand([1, 2, 3, 5, 6]);
+
+        assert.equal(actual, 'Увы ничего');
+    });
 	it('should return `Пара` for [1, 1, 2, 3, 4]', () => {
         const actual = getPokerHand([1, 1, 2, 3, 6]);
 
