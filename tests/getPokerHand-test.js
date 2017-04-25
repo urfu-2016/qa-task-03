@@ -103,12 +103,12 @@ describe('getPokerHand', () => {
 	it('should return `В массиве могут быть только числа` for [1, 2, 3, 4, g]', () => {
         const actual = getPokerHand([1, 2, 3, 4, "g"]);
 
-        assert.equal(actual, 'В массиве могут быть только числа');
+        assert.equal(actual, 'В массиве могут быть только целые положительные числа');
     });
 	it('should return `В массиве могут быть только числа` for [1, 2, 3, 4, 1g]', () => {
-        const actual = getPokerHand([1, 2, 3, 4, "1g"]);
+        const actual = getPokerHand([1, 2, 3, 4, "123g"]);
 
-        assert.equal(actual, 'В массиве могут быть только числа');
+        assert.equal(actual, 'В массиве могут быть только целые положительные числа');
     });
 	it('should return `Не массив` for "1"', () => {
         const actual = getPokerHand("1");
@@ -121,16 +121,21 @@ describe('getPokerHand', () => {
 
         assert.equal(actual, 'Пустой массив');
     });
-//Числа не больше 6 и не меньше 1
-	it('should return `Числа не больше 6` for [1, 8, 2, 3, 4]', () => {
+//Числа не больше 6 и не меньше 1 целые
+	it('should return `Числа не больше 6 и не меньше 1 целые` for [1, 8, 2, 3, 4]', () => {
         const actual = getPokerHand([1, 8, 2, 3, 4]);
 
-        assert.equal(actual, 'Числа не больше 6 и не меньше 1');
+        assert.equal(actual, 'В массиве могут быть только целые положительные числа');
     });
-	it('should return `Числа не больше 6` for [1, -1, 2, 3, 4]', () => {
+	it('should return `Числа не больше 6 и не меньше 1 целые` for [1, -1, 2, 3, 4]', () => {
         const actual = getPokerHand([1, -1, 2, 3, 4]);
 
-        assert.equal(actual, 'Числа не больше 6 и не меньше 1');
+        assert.equal(actual, 'В массиве могут быть только целые положительные числа');
+    });
+	it('should return `Числа не больше 6 и не меньше 1 целые` for [1, 1.1, 2, 3, 4]', () => {
+        const actual = getPokerHand([1, -1, 2, 3, 4]);
+
+        assert.equal(actual, 'В массиве могут быть только целые положительные числа');
     });
 //Больше 1 аргумента
 	it('should return `Должен быть ровно 1 аргумент` for Nothing', () => {

@@ -30,13 +30,9 @@ function getPokerHand(dice) {
 	while ( i < count)
 	{
 		x = dice[i];
-		if (isNaN(x))
+		if (isNaN(x) || (x > 6 || x < 1) || !Number.isInteger(x))
 		{
-			return 'В массиве могут быть только числа'
-		}
-		if (x > 6 || x < 1)
-		{
-			return 'Числа не больше 6 и не меньше 1'
+			return 'В массиве могут быть только целые положительные числа'
 		}
 		var Elem = 0;
 		while (x == dice[j])
