@@ -10,18 +10,18 @@ function getPokerHand(dice) {
 		return 'Покер';
 	count = getCount(dice)
 	if(isCare(count))
-		return('Каре');
+		return 'Каре';
 	if(isFullHouse(count))
-		return('Фулл хаус');
+		return 'Фулл хаус';
 	if(isTriple(count))
-		return('Тройка');
+		return 'Тройка';
 	countOfPairs = getCountOfPairs(count);
 	//WSH.Echo('countOfPairs = ' + countOfPairs)
 	if(isTwoPairs(countOfPairs))
-		return ('Две пары');
+		return 'Две пары';
 	if(isPair(countOfPairs))
-		return('Пара');
-	return('Наивысшее очко');
+		return 'Пара';
+	return 'Наивысшее очко';
 }
 
 function getCount(dice){
