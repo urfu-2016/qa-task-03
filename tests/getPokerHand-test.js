@@ -42,29 +42,52 @@ describe('getPokerHand', () => {
 
         assert.equal(actual, 'Наивысшее очко!');
     });
-    //Подсунул не тот кубик
-    it('should return `Смухлевать решил?` for [2, 3, Schuller, 5, 6]', () => {
-        const actual = getPokerHand([2, 3, 'Schuller', 5, 6]);
-
-        assert.equal(actual, 'Смухлевать решил?');
+    it('should return `Бракованный кубик! На кубиках должны быть числа 1-6` for [2, 3, 4, 9, 9]', () => {
+        try {
+            const actual = getPokerHand([2, 3, 4, 9, 9]);
+            throw new Error('`getPokerHand` should throw error')
+        } catch (error) {
+            assert.equal(error.message, 'Бракованный кубик! На кубиках должны быть числа 1-6');
+        }
     });
-    //забыл один кубик дома
-    it('should return `Смухлевать решил?` for [2, 3, 4, 5]', () => {
-        const actual = getPokerHand([2, 3, 4, 5]);
-
-        assert.equal(actual, 'Смухлевать решил?');
+    it('should return `Бракованный кубик! На кубиках должны быть числа 1-6` for [-2, 3, 4, 2, 2]', () => {
+        try {
+            const actual = getPokerHand([-2, 3, 4, 2, 2]);
+            throw new Error('`getPokerHand` should throw error')
+        } catch (error) {
+            assert.equal(error.message, 'Бракованный кубик! На кубиках должны быть числа 1-6');
+        }
     });
-    //Думал лишний кубик не заметят
-    it('should return `Смухлевать решил?` for [2, 3, 4, 5, 6, 6]', () => {
-        const actual = getPokerHand([2, 3, 4, 5, 6, 6]);
-
-        assert.equal(actual, 'Смухлевать решил?');
+    it('should return `Кубиков должно быть ровно 5` for [2, 3, 4, 1]', () => {
+        try {
+            const actual = getPokerHand([2, 3, 4, 1]);
+            throw new Error('`getPokerHand` should throw error')
+        } catch (error) {
+            assert.equal(error.message, 'Кубиков должно быть ровно 5');
+        }
     });
-    //Взял кубики с большими числами
-    it('should return `Смухлевать решил?` for [2, 3, 4, 9, 9]', () => {
-        const actual = getPokerHand([2, 3, 4, 9, 9]);
-
-        assert.equal(actual, 'Смухлевать решил?');
+    it('should return `Кубиков должно быть ровно 5` for [6, 6, 6, 6, 6, 6]', () => {
+        try {
+            const actual = getPokerHand([6, 6, 6, 6, 6, 6]);
+            throw new Error('`getPokerHand` should throw error')
+        } catch (error) {
+            assert.equal(error.message, 'Кубиков должно быть ровно 5');
+        }
     });
-
+    it('should return `Кубиков должно быть ровно 5` for []', () => {
+        try {
+            const actual = getPokerHand([]);
+            throw new Error('`getPokerHand` should throw error')
+        } catch (error) {
+            assert.equal(error.message, 'Кубиков должно быть ровно 5');
+        }
+    });
+    it('should return `Бракованный кубик! На кубиках должны быть числа 1-6` for [undefined, 6, 6, 6, 6, 6]', () => {
+        try {
+            const actual = getPokerHand([undefined, 6, 6, 6, 6]);
+            throw new Error('`getPokerHand` should throw error')
+        } catch (error) {
+            assert.equal(error.message, 'Бракованный кубик! На кубиках должны быть числа 1-6');
+        }
+    });
 });
