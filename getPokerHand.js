@@ -37,6 +37,7 @@ function getPokerHand(dice) {
 }
 
 const calculateHashOfDice = dice => dice
+    .sort((x, y) => x - y)
     .reduce((res, item) => {
         let current = res.pop() || {item, count: 0};
         if (current.item !== item) {

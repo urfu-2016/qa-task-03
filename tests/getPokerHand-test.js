@@ -3,49 +3,39 @@ const getPokerHand = require('../getPokerHand');
 
 describe('getPokerHand', () => {
     it('should return `Покер` for [1, 1, 1, 1, 1]', () => {
-        const actual = getPokerHand([1, 1, 1, 1, 1]);
-
-        assert.equal(actual, 'Покер');
+        assert.equal(getPokerHand([1, 1, 1, 1, 1]), 'Покер');
     });
 
     it('should return `Каре` for [1, 1, 1, 1, 2]', () => {
-        const actual = getPokerHand([1, 1, 1, 1, 2]);
-
-        assert.equal(actual, 'Каре');
+        assert.equal(getPokerHand([1, 1, 1, 1, 2]), 'Каре');
     });
 
     it('should return `Фулл хаус` for [1, 1, 1, 2, 2]', () => {
-        const actual = getPokerHand([1, 1, 1, 2, 2]);
-
-        assert.equal(actual, 'Фулл хаус');
+        assert.equal(getPokerHand([1, 1, 1, 2, 2]), 'Фулл хаус');
     });
 
     it('should return `Тройка` for [1, 1, 1, 2, 3]', () => {
-        const actual = getPokerHand([1, 1, 1, 2, 3]);
-
-        assert.equal(actual, 'Тройка');
+        assert.equal(getPokerHand([1, 1, 1, 2, 3]), 'Тройка');
     });
 
     it('should return `Две пары` for [1, 1, 2, 2, 3]', () => {
-        const actual = getPokerHand([1, 1, 2, 2, 3]);
-
-        assert.equal(actual, 'Две пары');
+        assert.equal(getPokerHand([1, 1, 2, 2, 3]), 'Две пары');
     });
 
     it('should return `Пара` for [1, 1, 2, 4, 3]', () => {
-        const actual = getPokerHand([1, 1, 2, 4, 3]);
-
-        assert.equal(actual, 'Пара');
+        assert.equal(getPokerHand([1, 1, 2, 4, 3]), 'Пара');
     });
 
     it('should return `Наивысшее очко` for [1, 5, 2, 4, 3]', () => {
-        const actual = getPokerHand([1, 5, 2, 4, 3]);
+        assert.equal(getPokerHand([1, 5, 2, 4, 3]), 'Наивысшее очко');
+    });
 
-        assert.equal(actual, 'Наивысшее очко');
+    it('should return `Пара` for [1, 2, 4, 1, 3]', () => {
+        assert.equal(getPokerHand([1, 2, 4, 1, 3]), 'Пара');
     });
 
     it('should throw an exception for cards count less than 5', () => {
-         assert.throws(getPokerHand.bind(null, [1, 4, 2, 3]), RangeError);
+        assert.throws(getPokerHand.bind(null, [1, 4, 2, 3]), RangeError);
     });
 
     it('should throw an exception for cards count greater than 5', () => {
