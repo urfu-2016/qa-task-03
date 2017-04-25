@@ -98,5 +98,17 @@ describe('getPokerHand', () => {
     	assert.throws(actual, /Элементы массива должны принадлежать множеству {1, 2, 3, 4, 5, 6}/);
     });
 
+    it ('should throw error when array elements are not from {1, 2, 3, 4, 5, 6} set', () =>{
+    	const actual = () => getPokerHand([0, 3, 5, 4, 6]);
+
+    	assert.throws(actual, /Элементы массива должны принадлежать множеству {1, 2, 3, 4, 5, 6}/);
+    });
+
+	it ('should throw error when array elements are not from {1, 2, 3, 4, 5, 6} set', () =>{
+    	const actual = () => getPokerHand([6, 3, 5, 9, 2]);
+
+    	assert.throws(actual, /Элементы массива должны принадлежать множеству {1, 2, 3, 4, 5, 6}/);
+    });
+
     // Напишите тесты на ваш замечательный код здесь
 });
