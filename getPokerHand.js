@@ -6,19 +6,16 @@ const combinations = ['Покер', 'Каре', 'Фулл хаус', 'Тройк
  * @returns {String} название комбинации
  */
 function getPokerHand(dice) {
-    if (dice === null || dice === undefined)
-        throw new Error('Аргумент не может быть null или undefined')
-
     if (!Array.isArray(dice))
         throw new Error('У аргумента должен быть тип массив'); 
 
     if (dice.length !== 5) 
         throw new Error('Массив должен быть длины 5'); 
     
-    const isElemsNum = dice.every(item => Number.isInteger(item) && item > 0 && item < 7);
+    const isElemsNum = dice.every(item => Number.isInteger(item) && item > 0 && item < 6);
     
      if (!isElemsNum)
-        throw new Error('Элементы массива дожны быть целые числа из отрезка [0, 6]'); 
+        throw new Error('Элементы массива дожны быть целые числа из отрезка [0, 5]'); 
 
     const countsElemHash = (dice.reduce((res, item) => {
         res[item] = res[item] ? res[item] + 1 : 1;
