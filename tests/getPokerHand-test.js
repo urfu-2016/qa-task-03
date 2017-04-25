@@ -44,5 +44,29 @@ describe('getPokerHand', () => {
         assert.equal(actual, 'Наивысшее очко');
     });
 
+    it('should throw an exception for cards count less than 5', () => {
+         assert.throws(getPokerHand.bind(null, [1, 4, 2, 3]), RangeError);
+    });
+
+    it('should throw an exception for cards count greater than 5', () => {
+        assert.throws(getPokerHand.bind(null, [1, 4, 2, 3, 2, 4]), RangeError);
+    });
+
+    it('should throw an exception if there are any card with value not within 1..6 range', () => {
+        assert.throws(getPokerHand.bind(null, [1, 4, 2, 3, 7]), RangeError);
+    });
+
+    it('should throw an exception if there are any non number card', () => {
+        assert.throws(getPokerHand.bind(null, [1, 4, 2, 3, '1']), TypeError);
+    });
+
+    it('should throw an exception if dice is not an array', () => {
+        assert.throws(getPokerHand.bind(null, '123'), TypeError);
+    });
+
+    it('should throw an exception if dice is null', () => {
+        assert.throws(getPokerHand.bind(null, null), TypeError);
+    });
+
     // Напишите тесты на ваш замечательный код здесь
 });
