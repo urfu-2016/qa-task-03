@@ -16,18 +16,17 @@ function checkThatDiceIsValid(dice) {
         throw new RangeError(`The lenght of your dice must be 5, but was ${dice.length}`);
     }
 
-    if (!dice.every(card => typeof card === 'number')) {
+    if (dice.some(card => typeof card !== 'number')) {
         throw new TypeError('There are cards that is not a number');
     }
 
-    if (!dice.every(card => card % 1 === 0)) {
-        throw new TypeError('Your dice contains float numbers');
-    }
-
-    if (!dice.every(card => card >= 1 && card <= 6)) {
+    if (dice.some(card => card < 1 || card > 6)) {
         throw new RangeError('Cards must be in range 1..6');
     }
 
+    if (dice.some(card => card % 1 !== 0)) {
+        throw new TypeError('Your dice contains float numbers');
+    }
 }
 
 /**
