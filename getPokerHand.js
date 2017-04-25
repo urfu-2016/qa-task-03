@@ -8,6 +8,9 @@ const correctValues = [1, 2, 3, 4, 5, 6];
  * @returns {String} название комбинации
  */
 function getPokerHand(dice) {
+    if (!Array.isArray(dice)){
+        throw new TypeError(`Аргумент функции должен являться массивом`)
+    }
     if (dice.length != diceLength) {
         throw new Error(`Длина массива должна быть равна 5`)
     }
