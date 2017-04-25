@@ -110,7 +110,14 @@ it('should throw error when count is not a number', () => {
     }
 });	
 	
-	
+it('should throw error when count is not a array', () => {
+    try {
+        getPokerHand(34);
+        throw new Error('`getPokerHand` should throw error')
+    } catch (error) {
+        assert.equal(error.message, 'Не массив');
+    }
+});		
 	
 	
 	
