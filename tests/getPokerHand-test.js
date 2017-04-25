@@ -121,6 +121,16 @@ describe('getPokerHand', () => {
 
         assert.equal(actual, 'Пустой массив');
     });
+//Числа не больше 6 и не меньше 1
+	it('should return `Числа не больше 6` for [1, 8, 2, 3, 4]', () => {
+        const actual = getPokerHand([1, 8, 2, 3, 4]);
 
+        assert.equal(actual, 'Числа не больше 6 и не меньше 1');
+    });
+	it('should return `Числа не больше 6` for [1, -1, 2, 3, 4]', () => {
+        const actual = getPokerHand([1, -1, 2, 3, 4]);
+
+        assert.equal(actual, 'Числа не больше 6 и не меньше 1');
+    });
     // Напишите тесты на ваш замечательный код здесь
 });

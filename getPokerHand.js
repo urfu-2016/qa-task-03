@@ -30,6 +30,10 @@ function getPokerHand(dice) {
 		{
 			return 'В массиве могут быть только числа'
 		}
+		if (x > 6 || x < 1)
+		{
+			return 'Числа не больше 6 и не меньше 1'
+		}
 		var Elem = 0;
 		while (x == dice[j])
 		{
