@@ -7,32 +7,31 @@ const combinations = ['Покер', 'Каре', 'Фулл хаус', 'Тройк
  */
 function getPokerHand(dice) {
     if (dice === null || dice === undefined)
-        return null;
+        throw new Error('Аргумент не может быть null или undefined')
 
     if (!Array.isArray(dice))
-        throw new Error('Type error'); 
+        throw new Error('У аргумента должен быть тип массив'); 
+
+    if (dice.length !== 5) 
+        throw new Error('Массив должен быть длины 5'); 
     
-    const isElemsNum = dice.every(item => Number.isInteger(item));
+    const isElemsNum = dice.every(item => Number.isInteger(item) && item > 0 && item < 7);
     
      if (!isElemsNum)
-        throw new Error('Type error'); 
+        throw new Error('Элементы массива дожны быть целые числа из отрезка [0, 6]'); 
 
-    if (dice.length < 5) 
-        return null
-
-    /** Так как без babel низя Object.values :( */
-    let countsElemHash = (dice.reduce((res, item) => {
+    const countsElemHash = (dice.reduce((res, item) => {
         res[item] = res[item] ? res[item] + 1 : 1;
         return res
     }, {}));
-    let countsElem = Object.keys(countsElemHash).map(item => countsElemHash[item]);
+
+    const countsElem = Object.keys(countsElemHash).map(item => countsElemHash[item]);
     if (countsElem.includes(5)) return 'Покер';
     else if (countsElem.includes(4)) return 'Каре';
     else if (countsElem.includes(3) && countsElem.includes(2)) return 'Фулл хаус';
     else if (countsElem.includes(3)) return 'Тройка';
     else if (countsElem.includes(2) && countsElem.length === 3) return 'Две пары';
     else if (countsElem.includes(2)) return 'Пара';
-    else return Math.max(...dice);
+    else return 'Наивысшее очко'
 }
-
 module.exports = getPokerHand;

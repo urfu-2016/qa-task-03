@@ -15,102 +15,68 @@ describe('getPokerHand', () => {
         assert.equal(actual, 'Каре');
     });
 
-    it('should return `Фулл хаус` for [12, 12, 100, 100, 100]', () => {
-        const actual = getPokerHand([12, 12, 100, 100, 100]);
+    it('should return `Фулл хаус` for [4, 4, 5, 5, 5]', () => {
+        const actual = getPokerHand([4, 4, 5, 5, 5]);
 
         assert.equal(actual, 'Фулл хаус');
     });
 
-    it('should return `Тройка` for [12, 13, -1, -1, -1]', () => {
-        const actual = getPokerHand([12, 13, -1, -1, -1]);
+    it('should return `Тройка` for [4, 3, 1, 1, 1]', () => {
+        const actual = getPokerHand([4, 3, 1, 1, 1]);
 
         assert.equal(actual, 'Тройка');
     });
 
-    it('should return `Две пары` for [9, 0, 2, 0, 2]', () => {
-        const actual = getPokerHand([9, 0, 2, 0, 2]);
+    it('should return `Две пары` for [1, 4, 2, 4, 2]', () => {
+        const actual = getPokerHand([1, 4, 2, 4, 2]);
 
         assert.equal(actual, 'Две пары');
     });
 
-    it('should return `4` for [-1, 0, 3, 4, 2]', () => {
-        const actual = getPokerHand([-1, 0, 3, 4, 2]);
+    it('should return `4` for [1, 2, 3, 4, 5]', () => {
+        const actual = getPokerHand([1, 2, 3, 4, 5]);
 
-        assert.equal(actual, '4');
+        assert.equal(actual, 'Наивысшее очко');
     });
 
     /** Негативные тесты */
-    it('should return `null` for []', () => {
-        const actual = getPokerHand([]);
-
-        assert.equal(actual, null);
+    /** тесты на тип аргумента */
+    it('Аргумент не может быть null или undefined` for null', () => {
+        assert.throws(() => { getPokerHand(null); }, 'Аргумент не может быть null или undefined');
     });
 
-    /** Негативные тесты */
-    it('should return `null` for array which length < 5', () => {
-        const actual = getPokerHand([1,3,4]);
-
-        assert.equal(actual, null);
+    it('should return `Аргумент не может быть null или undefined` for undefined', () => {
+        assert.throws(() => { getPokerHand(undefined); }, 'Аргумент не может быть null или undefined');
     });
 
-    it('should return `null` for undefined', () => {
-        const actual = getPokerHand();
-
-        assert.equal(actual, null);
+    it('should return `У аргумента должен быть тип массив` for {}', () => {
+        assert.throws(() => { getPokerHand({}); }, 'У аргумента должен быть тип массив');
     });
 
-    it('should return `Type error` for [1, 4, 3, `5`, 4]', () => {
-        try {
-            getPokerHand([1, 4, 3, '5', 4]);
-            throw new Error('`getPokerHand` should throw error')
-        } catch (error) {
-            assert.equal(error.message, 'Type error');
-        }
+    /**  тест на дилну массива */
+    it('should return `Массив должен быть длины 5` for []', () => {
+        assert.throws(() => { getPokerHand([]); }, 'Массив должен быть длины 5');
     });
 
-    it('should return `Type error` for [1, 4, 3, null]', () => {
-        try {
-            getPokerHand([1, 4, 3, null]);
-            throw new Error('`getPokerHand` should throw error')
-        } catch (error) {
-            assert.equal(error.message, 'Type error');
-        }
+    /** тесты для элементов массива */
+    it('should return `У аргумента должен быть тип массив` for `str`', () => {
+        assert.throws(() => { getPokerHand('str'); }, 'У аргумента должен быть тип массив');
     });
 
-    it('should return `Type error` for [1, 4, 3, undefined]', () => {
-        try {
-            getPokerHand([1, 4, 3, undefined]);
-            throw new Error('`getPokerHand` should throw error')
-        } catch (error) {
-            assert.equal(error.message, 'Type error');
-        }
+    it('should return `Элементы массива дожны быть целые числа из отрезка [0, 6]` for [312, 3, 2, 3, 5]', () => {
+        assert.throws(() => { getPokerHand([312, 3, 2, 3, 5]); }, 'Элементы массива дожны быть целые числа из отрезка [0, 6]');
     });
 
-    it('should return `Type error` for [1, 4, 3, NaN]', () => {
-        try {
-            getPokerHand([1, 4, 3, NaN]);
-            throw new Error('`getPokerHand` should throw error')
-        } catch (error) {
-            assert.equal(error.message, 'Type error');
-        }
+    it('should return `Элементы массива дожны быть целые числа из отрезка [0, 6]` for [null, 3, 4, 5, 6]', () => {
+        assert.throws(() => { getPokerHand([null, 3, 4, 5, 6]); }, 'Элементы массива дожны быть целые числа из отрезка [0, 6]');
     });
 
-    it('should return `Type error` for {}', () => {
-        try {
-            getPokerHand({});
-            throw new Error('`getPokerHand` should throw error')
-        } catch (error) {
-            assert.equal(error.message, 'Type error');
-        }
+    it('should return `Элементы массива дожны быть целые числа из отрезка [0, 6]` for [undefined, 3, 4, 5, 6]', () => {
+        assert.throws(() => { getPokerHand([undefined, 3, 4, 5, 6]); }, 'Элементы массива дожны быть целые числа из отрезка [0, 6]');
     });
 
-    it('should return `Type error` for `string`' , () => {
-        try {
-            getPokerHand('string');
-            throw new Error('`getPokerHand` should throw error')
-        } catch (error) {
-            assert.equal(error.message, 'Type error');
-        }
+    it('should return `Элементы массива дожны быть целые числа из отрезка [0, 6]` for [NaN, 3, 4, 5, 6]', () => {
+        assert.throws(() => { getPokerHand([NaN, 3, 4, 5, 6]); }, 'Элементы массива дожны быть целые числа из отрезка [0, 6]');
     });
 });
 
