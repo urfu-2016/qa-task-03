@@ -7,16 +7,18 @@
  */
 function getPokerHand(dice) {
     // Напишите ваш замечательный код здесь
-    var arrayDice = Object.seal([0, 0, 0, 0, 0 ,0, 0]);
+    var arrayDice = [0, 0, 0, 0, 0 ,0, 0];
+    if (dice.length != 5) {
+        throw new Error('Кубиков должно быть ровно 5');
+    }
     for(var i = 0; i < 5; i++) {
-        try {
-            if (dice.length > 5) {
-                throw new UserException('Смухлевать решил?')
-            }
-            arrayDice[dice[i]]++;
-        } catch(e) {
-            return 'Смухлевать решил?'; 
+        if (typeof(dice[i]) != 'number') {
+            throw new Error('Бракованный кубик! На кубиках должны быть числа 1-6');
         }
+        if (dice[i] > 6 || dice[i] < 1) {
+            throw new Error('Бракованный кубик! На кубиках должны быть числа 1-6');
+        }
+        arrayDice[dice[i]]++;
     }
     var combination = 'none';
     var setDice = new Set();
