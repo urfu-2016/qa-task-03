@@ -30,10 +30,10 @@ function checkInputData(args) {
         throw new Error('Массив должен содержать ровно 5 значений');
     if (Math.min.apply(null,args[0]) < 1 || Math.max.apply(null,args[0]) > 6)
         throw new Error('Значения массива должны находиться в диапазоне от 1 до 6');
-    args[0].forEach(function (element) {
-        if (!Number.isInteger(element))
-            throw new Error('Значения массива должны являться целыми числами');
-    })
+    if (args[0].some(function (element) {
+        return !Number.isInteger(element);
+    }))
+        throw new Error('Значения массива должны являться целыми числами');
 }
 
 function getNumbersCount(dice) {

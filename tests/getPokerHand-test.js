@@ -27,11 +27,17 @@ describe('getPokerHand', () => {
 
         assert.equal(actual, `Две пары`);
     });
+    it('should return `Пара` for [3, 3, 5, 6, 1]', () => {
+        const actual = getPokerHand([3, 3, 5, 6, 1]);
+
+        assert.equal(actual, `Пара`);
+    });
     it('should return `Наивысшее очко` for [1, 3, 6, 5, 2]', () => {
         const actual = getPokerHand([1, 3, 6, 5, 2]);
 
         assert.equal(actual, `Наивысшее очко`);
     });
+
     it('should throw Error for [0, 1, 2, 3, 4]', () => {
         const cb = () => getPokerHand([0, 1, 2, 3, 4]);
 
