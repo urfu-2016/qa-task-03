@@ -10,7 +10,7 @@ function getPokerHand(dice) {
     var arrayDice = Object.seal([0, 0, 0, 0, 0 ,0, 0]);
     for(var i = 0; i < 5; i++) {
         try {
-            if ((dice.length > 5) || (dice[i] > 6)) {
+            if (dice.length > 5) {
                 throw new UserException('Смухлевать решил?')
             }
             arrayDice[dice[i]]++;
