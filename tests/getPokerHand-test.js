@@ -101,7 +101,14 @@ it('should throw error when not entered 5 numbers', () => {
     }
 });
 	
-	
+it('should throw error when count is not a number', () => {
+    try {
+        getPokerHand([1, 4, 3, 6, 'dd']);
+        throw new Error('`getPokerHand` should throw error')
+    } catch (error) {
+        assert.equal(error.message, 'Введено не число');
+    }
+});	
 	
 	
 	

@@ -13,8 +13,9 @@ function getPokerHand(dice) {
 	var numberRepeats = 1;
 	var arrayRepeats = new Array();
 	for ( i=0; i<5; i++){
+		if(isNaN(dice[i])){throw new Error('Введено не число');}
 		if(!Number.isInteger(dice[i])|| dice[i]<1 || dice[i]>6){
-			throw new Error(dice[i]+' нет на ребре кубика'); break;
+			throw new Error(dice[i]+' нет на ребре кубика');
 			}
 		if(dice[i]==dice[i+1]){
 			numberRepeats++;
