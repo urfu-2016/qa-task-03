@@ -21,10 +21,7 @@ function getPokerHand(dice)
             throw new Error('The result of the dice can`t be more than 6!');
         numberOfValues[item-1]++
     });
-    numberOfValues.sort(function (a, b) {
-        if (a < b) return 1;
-        if (a > b) return -1;
-    });
+    numberOfValues.sort((a,b) => b-a);
     switch (numberOfValues[0])
     {
         case 5:
