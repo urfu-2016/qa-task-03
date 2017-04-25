@@ -132,5 +132,16 @@ describe('getPokerHand', () => {
 
         assert.equal(actual, 'Числа не больше 6 и не меньше 1');
     });
+//Больше 1 аргумента
+	it('should return `Должен быть ровно 1 аргумент` for Nothing', () => {
+        const actual = getPokerHand();
+
+        assert.equal(actual, 'Должен быть ровно 1 аргумент');
+    });
+	it('should return `Должен быть ровно 1 аргумент` for [1,2,3],[1,2,3]', () => {
+        const actual = getPokerHand([1,2,3],[1,2,3]);
+
+        assert.equal(actual, 'Должен быть ровно 1 аргумент');
+    });
     // Напишите тесты на ваш замечательный код здесь
 });

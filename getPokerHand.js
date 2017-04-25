@@ -6,6 +6,10 @@
  */
 function getPokerHand(dice) {
     // Напишите ваш замечательный код здесь
+	if (arguments.length != 1 )
+	{
+		return 'Должен быть ровно 1 аргумент'
+	}
 	if (!Array.isArray(dice))
 	{
 		return 'Не массив'
