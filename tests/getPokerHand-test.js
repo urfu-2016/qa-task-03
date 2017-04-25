@@ -15,22 +15,22 @@ describe('getPokerHand', () => {
     	assert.equal(actual, 'Покер');
     });
 
-    it ('should return `Каре` for [9, 9, 3, 9, 9]', () =>{
-    	const actual = getPokerHand([9, 9, 3, 9, 9]);
+    it ('should return `Каре` for [6, 6, 3, 6, 6]', () =>{
+    	const actual = getPokerHand([6, 6, 3, 6, 6]);
 
     	assert.equal(actual, 'Каре');
     });
 
-    it ('should return `Фулл хаус` for [8, 7, 8, 8, 7]', () =>{
-    	const actual = getPokerHand([8, 7, 8, 8, 7]);
+    it ('should return `Фулл хаус` for [5, 1, 5, 5, 1]', () =>{
+    	const actual = getPokerHand([5, 1, 5, 5, 1]);
 
     	assert.equal(actual, 'Фулл хаус');
     });
-    //it ('should return `Фулл хаус` for [8, 7, 8, 7, 7]', () =>{
-    //	const actual = getPokerHand([8, 7, 8, 7, 7]);
+    it ('should return `Фулл хаус` for [2, 4, 2, 4, 4]', () =>{
+    	const actual = getPokerHand([2, 4, 2, 4, 4]);
 
-    //	assert.equal(actual, 'Фулл хаус');
-    //});
+    	assert.equal(actual, 'Фулл хаус');
+    });
 
     it ('should return `Тройка` for [3, 1, 2, 1, 1]', () =>{
     	const actual = getPokerHand([3, 1, 2, 1, 1]);
@@ -44,16 +44,58 @@ describe('getPokerHand', () => {
     	assert.equal(actual, 'Две пары');
     });
 
-	it ('should return `Пара` for [8, 9, 7, 5, 5]', () =>{
-    	const actual = getPokerHand([8, 9, 7, 5, 5]);
+	it ('should return `Пара` for [6, 1, 2, 5, 5]', () =>{
+    	const actual = getPokerHand([6, 1, 2, 5, 5]);
 
     	assert.equal(actual, 'Пара');
     });
 
-	it ('should return `Наивысшее очко` for [3, 4, 5, 6, 7]', () =>{
-    	const actual = getPokerHand([3, 4, 5, 6, 7]);
+	it ('should return `Наивысшее очко` for [3, 4, 5, 6, 2]', () =>{
+    	const actual = getPokerHand([3, 4, 5, 6, 2]);
 
     	assert.equal(actual, 'Наивысшее очко');
+    });
+
+    it ('should throw error when arguments number is 0', () =>{
+    	const actual = () => getPokerHand();
+
+    	assert.throws(actual, /Функция принимает только 1 аргумент/);
+    });
+
+    it ('should throw error when arguments number is bigger than 1', () =>{
+    	const actual = () => getPokerHand(1, 2, 3);
+
+    	assert.throws(actual, /Функция принимает только 1 аргумент/);
+    });
+
+    it ('should throw error when argument is not an array', () =>{
+    	const actual = () => getPokerHand(1);
+
+    	assert.throws(actual, /Аргумент должен быть массивом/);
+    });
+
+	it ('should throw error when array length is smaller than 5', () =>{
+    	const actual = () => getPokerHand([1, 2, 3, 4]);
+
+    	assert.throws(actual, /Размер массива должен равняться 5/);
+    });
+
+    it ('should throw error when array length is bigger than 5', () =>{
+    	const actual = () => getPokerHand([1, 2, 3, 4, 5, 6]);
+
+    	assert.throws(actual, /Размер массива должен равняться 5/);
+    });
+
+    it ('should throw error when array elements are not integers', () =>{
+    	const actual = () => getPokerHand([1, 2.6, 3, 4, 5]);
+
+    	assert.throws(actual, /Элементы массива должны принадлежать множеству {1, 2, 3, 4, 5, 6}/);
+    });
+
+    it ('should throw error when array elements are not from {1, 2, 3, 4, 5, 6} set', () =>{
+    	const actual = () => getPokerHand([1, 2.6, 3, 4, 5]);
+
+    	assert.throws(actual, /Элементы массива должны принадлежать множеству {1, 2, 3, 4, 5, 6}/);
     });
 
     // Напишите тесты на ваш замечательный код здесь
