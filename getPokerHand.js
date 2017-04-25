@@ -7,6 +7,29 @@ const DICE_HASH_TO_DESCRIPTION = {
     7: 'Пара'
 };
 
+function checkThatDiceIsValid(dice) {
+    if (!(dice instanceof Array)) {
+        throw new TypeError('Your dice is not an array');
+    }
+
+    if (dice.length !== 5) {
+        throw new RangeError(`The lenght of your dice must be 5, but was ${dice.length}`);
+    }
+
+    if (!dice.every(card => typeof card === 'number')) {
+        throw new TypeError('There are cards that is not a number');
+    }
+
+    if (!dice.every(card => card % 1 === 0)) {
+        throw new TypeError('Your dice contains float numbers');
+    }
+
+    if (!dice.every(card => card >= 1 && card <= 6)) {
+        throw new RangeError('Cards must be in range 1..6');
+    }
+
+}
+
 /**
  * Определение комбинации в броске
  *
@@ -16,17 +39,7 @@ const DICE_HASH_TO_DESCRIPTION = {
 function getPokerHand(dice) {
     // Напишите ваш замечательный код здесь
 
-    if (!(dice instanceof Array)) {
-        throw new TypeError('Your dice is not an array');
-    }
-
-    if (!dice.every(card => typeof card === 'number')) {
-        throw new TypeError('There are cards that is not a number');
-    }
-
-    if (dice.length !== 5 || !dice.every(card => card >= 1 && card <= 6)) {
-        throw new RangeError('Check the correctness of your dice');
-    }
+    checkThatDiceIsValid(dice);
 
     const diceHash = calculateHashOfDice(dice);
     if (diceHash in DICE_HASH_TO_DESCRIPTION) {
