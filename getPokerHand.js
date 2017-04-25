@@ -6,6 +6,10 @@
  */
 function getPokerHand(dice) {
     // Напишите ваш замечательный код здесь
+	if (!Array.isArray(dice))
+	{
+		return 'Не массив'
+	}
 	dice.sort();
 	var count = dice.length;
 	if (count == 0)

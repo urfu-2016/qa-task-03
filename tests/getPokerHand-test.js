@@ -99,6 +99,7 @@ describe('getPokerHand', () => {
 
         assert.equal(actual, 'Должно быть 5 костей');
     });
+//NaN
 	it('should return `В массиве могут быть только числа` for [1, 2, 3, 4, g]', () => {
         const actual = getPokerHand([1, 2, 3, 4, "g"]);
 
@@ -109,10 +110,17 @@ describe('getPokerHand', () => {
 
         assert.equal(actual, 'В массиве могут быть только числа');
     });
+	it('should return `Не массив` for "1"', () => {
+        const actual = getPokerHand("1");
+
+        assert.equal(actual, 'Не массив');
+    });
+//Пустой массив
 	it('should return `Пустой массив` for []', () => {
         const actual = getPokerHand([]);
 
         assert.equal(actual, 'Пустой массив');
     });
+
     // Напишите тесты на ваш замечательный код здесь
 });
