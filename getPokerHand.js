@@ -7,7 +7,7 @@ const DICES_HASH_TO_DESCRIPTION = {
     7: 'Пара'
 };
 
-function checkThatDiceIsValid(dices) {
+function checkThatDicesIsValid(dices) {
     if (arguments.length !== 1) {
         throw new Error(`Expected exactly one argument, but ${arguments.length} is provided`);
     }
@@ -41,7 +41,7 @@ function checkThatDiceIsValid(dices) {
 function getPokerHand(dices) {
     // Напишите ваш замечательный код здесь
 
-    checkThatDiceIsValid(dices);
+    checkThatDicesIsValid(dices);
 
     return DICES_HASH_TO_DESCRIPTION[calculateDicesHash(dices)] || 'Наивысшее очко';
 }
