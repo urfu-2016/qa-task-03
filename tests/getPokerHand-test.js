@@ -1,43 +1,44 @@
 'use strict';
 
 const assert = require('assert');
-const getPokerHand = require('../getPokerHand');
+const getPokerHand = require('../getPokerHand').getPokerHand;
+const errorMessages = require('../getPokerHand').errorMessages;
 
 describe('getPokerHand exception tests', () => {
     it('should return exception when call func without argument', () => {
         const actual = () => getPokerHand();
 
-        assert.throws(actual, Error);
+        assert.throws(actual, `/${errorMessages.needArg}/`);
     });
 
     it('should return exception when call func with not array argument', () => {
         const actual = () => getPokerHand('Oleg');
 
-        assert.throws(actual, Error);
+        assert.throws(actual, `/${errorMessages.argType}/`);
     });
 
     it('should return exception when call func with array which contains less then 5 elements', () => {
         const actual = () => getPokerHand([1]);
 
-        assert.throws(actual, Error);
+        assert.throws(actual,`/${errorMessages.arrLen}/`);
     });
 
     it('should return exception when call func with array which contains greater then 5 elements', () => {
         const actual = () => getPokerHand([1, 2, 3, 4, 5, 6]);
 
-        assert.throws(actual, Error);
+        assert.throws(actual, `/${errorMessages.arrLen}/`);
     });
 
     it('should return exception when call func with array which contains not only integers', () => {
         const actual = () => getPokerHand([1, 2, 3, 4, '5']);
 
-        assert.throws(actual, Error);
+        assert.throws(actual, `/${errorMessages.arrNumbers}/`);
     });
 
     it('should return exception when call func with array which contains integers not between 1 and 6', () => {
         const actual = () => getPokerHand([1, 2, 3, 4, -1]);
 
-        assert.throws(actual, Error);
+        assert.throws(actual, `/${errorMessages.arrRange}/`);
     });
 });
 
