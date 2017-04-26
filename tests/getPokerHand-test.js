@@ -75,11 +75,13 @@ describe('getPokerHand', () => {
         let cb = () => getPokerHand([1, 2, 3, 4, 7]);
 
         assert.throws(cb, /All dice values in dice should be greater or equal to 1 and less or equal to 6/);
+        assert.throws(cb, RangeError);
     });
 
     it('should throw RangeError when dice has value, which less than 1', () => {
         let cb = () => getPokerHand([0, 2, 3, 4, 5]);
 
         assert.throws(cb, /All dice values in dice should be greater or equal to 1 and less or equal to 6/);
+        assert.throws(cb, RangeError);
     });
 });
