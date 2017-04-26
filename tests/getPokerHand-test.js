@@ -8,37 +8,37 @@ describe('getPokerHand exception tests', () => {
     it('should return exception when call func without argument', () => {
         const actual = () => getPokerHand();
 
-        assert.throws(actual, `/${errorMessages.needArg}/`);
+        assert.throws(actual, new RegExp(errorMessages.needArg));
     });
 
     it('should return exception when call func with not array argument', () => {
         const actual = () => getPokerHand('Oleg');
 
-        assert.throws(actual, `/${errorMessages.argType}/`);
+        assert.throws(actual, new RegExp(errorMessages.argType));
     });
 
     it('should return exception when call func with array which contains less then 5 elements', () => {
         const actual = () => getPokerHand([1]);
 
-        assert.throws(actual,`/${errorMessages.arrLen}/`);
+        assert.throws(actual, new RegExp(errorMessages.arrLen));
     });
 
     it('should return exception when call func with array which contains greater then 5 elements', () => {
         const actual = () => getPokerHand([1, 2, 3, 4, 5, 6]);
 
-        assert.throws(actual, `/${errorMessages.arrLen}/`);
+        assert.throws(actual, new RegExp(errorMessages.arrLen));
     });
 
     it('should return exception when call func with array which contains not only integers', () => {
         const actual = () => getPokerHand([1, 2, 3, 4, '5']);
 
-        assert.throws(actual, `/${errorMessages.arrNumbers}/`);
+        assert.throws(actual, new RegExp(errorMessages.arrNumbers));
     });
 
     it('should return exception when call func with array which contains integers not between 1 and 6', () => {
         const actual = () => getPokerHand([1, 2, 3, 4, -1]);
 
-        assert.throws(actual, `/${errorMessages.arrRange}/`);
+        assert.throws(actual, new RegExp(errorMessages.arrRange));
     });
 });
 
