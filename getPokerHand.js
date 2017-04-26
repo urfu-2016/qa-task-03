@@ -1,4 +1,4 @@
-const DICE_HASH_TO_DESCRIPTION = {
+const DICES_HASH_TO_DESCRIPTION = {
     25: 'Покер',
     17: 'Каре',
     13: 'Фулл хаус',
@@ -7,54 +7,52 @@ const DICE_HASH_TO_DESCRIPTION = {
     7: 'Пара'
 };
 
-function checkThatDiceIsValid(dice) {
-    if (!(dice instanceof Array)) {
-        throw new TypeError('Your dice is not an array');
+function checkThatDiceIsValid(dices) {
+    if (arguments.length !== 1) {
+        throw new Error(`Expected exactly one argument, but ${arguments.length} is provided`);
+    }
+    if (!(dices instanceof Array)) {
+        throw new TypeError('Your dices is not an array');
     }
 
-    if (dice.length !== 5) {
-        throw new RangeError(`The lenght of your dice must be 5, but was ${dice.length}`);
+    if (dices.length !== 5) {
+        throw new RangeError(`Dices count must be equal to 5, but was ${dices.length}`);
     }
 
-    if (dice.some(card => typeof card !== 'number')) {
-        throw new TypeError('There are cards that is not a number');
+    if (dices.some(dice => typeof dice !== 'number')) {
+        throw new TypeError('There are dice that is not a number');
     }
 
-    if (dice.some(card => card < 1 || card > 6)) {
-        throw new RangeError('Cards must be in range 1..6');
+    if (dices.some(dice => dice < 1 || dice > 6)) {
+        throw new RangeError('Dice value must be in range 1..6');
     }
 
-    if (dice.some(card => card % 1 !== 0)) {
-        throw new TypeError('Your dice contains float numbers');
+    if (dices.some(dice => dice % 1 !== 0)) {
+        throw new TypeError('Your dices contains float numbers');
     }
 }
 
 /**
  * Определение комбинации в броске
  *
- * @param {Array} dice пять костей, для которых нужно определить комбинацию
+ * @param {Array} dices пять костей, для которых нужно определить комбинацию
  * @returns {String} название комбинации
  */
-function getPokerHand(dice) {
+function getPokerHand(dices) {
     // Напишите ваш замечательный код здесь
 
-    checkThatDiceIsValid(dice);
+    checkThatDiceIsValid(dices);
 
-    const diceHash = calculateHashOfDice(dice);
-    if (diceHash in DICE_HASH_TO_DESCRIPTION) {
-        return DICE_HASH_TO_DESCRIPTION[diceHash];
-    }
-
-    return'Наивысшее очко';
+    return DICES_HASH_TO_DESCRIPTION[calculateDicesHash(dices)] || 'Наивысшее очко';
 }
 
-const calculateHashOfDice = dice => dice
+const calculateDicesHash = dices => dices
     .sort((x, y) => x - y)
-    .reduce((res, item) => {
-        let current = res.pop() || {item, count: 0};
-        if (current.item !== item) {
+    .reduce((res, dice) => {
+        let current = res.pop() || {dice, count: 0};
+        if (current.dice !== dice) {
             res.push(current);
-            current = {item, count: 0};
+            current = {dice, count: 0};
         }
         current.count++;
         res.push(current);

@@ -65,6 +65,14 @@ describe('getPokerHand', () => {
         it('should throw an exception if dice contains non integer number', () => {
             assert.throws(getPokerHand.bind(null, [1, 1, 1, 1, 1.5]), TypeError);
         });
+
+        it('should throw an exception if more than one argument is provided', () => {
+            assert.throws(getPokerHand.bind(null, [1, 1, 1, 1, 1.5]), Error);
+        });
+
+        it('should throw an exception if no argument is provided', () => {
+            assert.throws(getPokerHand.bind(null, [1, 1, 1, 1, 1.5]), Error);
+        });
     });
     // Напишите тесты на ваш замечательный код здесь
 });
