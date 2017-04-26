@@ -5,6 +5,10 @@
  * @returns {String} название комбинации
  */
 function getPokerHand(dice) {
+    if (arguments.length !== 1) {
+        throw new Error('Функция должна принимать один аргумент');
+    }
+
     if (!(dice instanceof  Array)) {
         throw new Error('В функцию передан не массив');
     }
@@ -33,8 +37,7 @@ function getPokerHand(dice) {
     });
 
 
-    let isTwoPair = inArray(2) &&
-        countOfNumbers.indexOf(2, countOfNumbers.indexOf(2) + 1) !== -1;
+    let isTwoPair = countOfNumbers.indexOf(2) !== countOfNumbers.lastIndexOf(2);
     let combinations = {
         'Покер': inArray(5),
         'Каре': inArray(4),
