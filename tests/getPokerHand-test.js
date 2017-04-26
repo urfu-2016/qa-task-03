@@ -82,9 +82,17 @@ describe('getPokerHand', () => {
             assert.equal(error.message, 'Кубиков должно быть ровно 5');
         }
     });
-    it('should return `Бракованный кубик! На кубиках должны быть числа 1-6` for [undefined, 6, 6, 6, 6, 6]', () => {
+    it('should return `Бракованный кубик! На кубиках должны быть числа 1-6` for [undefined, 6, 6, 6, 6]', () => {
         try {
             const actual = getPokerHand([undefined, 6, 6, 6, 6]);
+            throw new Error('`getPokerHand` should throw error')
+        } catch (error) {
+            assert.equal(error.message, 'Бракованный кубик! На кубиках должны быть числа 1-6');
+        }
+    });
+    it('should return `Бракованный кубик! На кубиках должны быть числа 1-6` for [shuller, 6, 6, 6, 6]', () => {
+        try {
+            const actual = getPokerHand(['shuller', 6, 6, 6, 6]);
             throw new Error('`getPokerHand` should throw error')
         } catch (error) {
             assert.equal(error.message, 'Бракованный кубик! На кубиках должны быть числа 1-6');
