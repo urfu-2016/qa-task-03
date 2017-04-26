@@ -5,11 +5,10 @@
  * @returns {String} название комбинации
  */
 
+
 function getPokerHand(dice) {
     // Напишите ваш замечательный код здесь
-	dice.sort(function(a, b) {
-	return a - b;
-	}); 
+	dice.sort();
 	var num = [1,0,0,0,0];
 	j = 0;
 	for(var i = 1; i<dice.length; i++) 
