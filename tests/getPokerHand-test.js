@@ -89,26 +89,19 @@ describe('getPokerHand', () => {
     it ('should throw error when array elements are not integers', () =>{
     	const actual = () => getPokerHand([1, 2.6, 3, 4, 5]);
 
-    	assert.throws(actual, /Элементы массива должны принадлежать множеству {1, 2, 3, 4, 5, 6}/);
+    	assert.throws(actual, /Элементы массива должны быть целыми/);
     });
 
-    it ('should throw error when array elements are not from {1, 2, 3, 4, 5, 6} set', () =>{
-    	const actual = () => getPokerHand([1, 2.6, 3, 4, 5]);
-
-    	assert.throws(actual, /Элементы массива должны принадлежать множеству {1, 2, 3, 4, 5, 6}/);
-    });
-
-    it ('should throw error when array elements are not from {1, 2, 3, 4, 5, 6} set', () =>{
+    it ('should throw error when array elements are not from {1, 2, 3, 4, 5, 6} set (smaller)', () =>{
     	const actual = () => getPokerHand([0, 3, 5, 4, 6]);
 
     	assert.throws(actual, /Элементы массива должны принадлежать множеству {1, 2, 3, 4, 5, 6}/);
     });
 
-	it ('should throw error when array elements are not from {1, 2, 3, 4, 5, 6} set', () =>{
+	it ('should throw error when array elements are not from {1, 2, 3, 4, 5, 6} set (bigger)', () =>{
     	const actual = () => getPokerHand([6, 3, 5, 9, 2]);
 
     	assert.throws(actual, /Элементы массива должны принадлежать множеству {1, 2, 3, 4, 5, 6}/);
     });
 
-    // Напишите тесты на ваш замечательный код здесь
 });
