@@ -103,7 +103,7 @@ it('should throw error when not entered 5 numbers', () => {
 	
 it('should throw error when count is not a number', () => {
     try {
-        getPokerHand([1, 4, 3, 6, 'dd']);
+        getPokerHand([1, 4, 3, 5,true ]);
         throw new Error('`getPokerHand` should throw error')
     } catch (error) {
         assert.equal(error.message, 'Введено не число');
@@ -115,18 +115,25 @@ it('should throw error when count is not a array', () => {
         getPokerHand('34');
         throw new Error('`getPokerHand` should throw error')
     } catch (error) {
-        assert.equal(error.message, 'Не массив');
+        assert.equal(error.message, 'Введенный аргумент не является массивом');
     }
 });		
 	
-it('should throw error when count more than one argument', () => {
+it('should throw error when count more than one argument or not given an argument', () => {
     try {
         getPokerHand('34', 6);
         throw new Error('`getPokerHand` should throw error')
     } catch (error) {
-        assert.equal(error.message, 'Много аргументов');
+        assert.equal(error.message, 'Введено более одного аргумета или функции не передан аргумент');
     }
 });		
-	
+it('should throw error when count more than one argumentor not given an argument', () => {
+    try {
+        getPokerHand();
+        throw new Error('`getPokerHand` should throw error')
+    } catch (error) {
+        assert.equal(error.message, 'Введено более одного аргумета или функции не передан аргумент');
+    }
+});		
     // Напишите тесты на ваш замечательный код здесь
 });
