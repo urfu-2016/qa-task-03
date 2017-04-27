@@ -65,23 +65,7 @@ describe('getPokerHand', () => {
         assert.equal(error.message, '0 нет на ребре кубика');
     }
 });
-    it('should throw error when entered is not an integer in the range from 1 to 6', () => {
-    try {
-        getPokerHand([1, -3 , 3, 7, 4]);
-        throw new Error('`getPokerHand` should throw error')
-    } catch (error) {
-        assert.equal(error.message, '-3 нет на ребре кубика');
-    }
-});
 
-it('should throw error when entered is not an integer in the range from 1 to 6', () => {
-    try {
-        getPokerHand([1, 10 , 3, 7, 4]);
-        throw new Error('`getPokerHand` should throw error')
-    } catch (error) {
-        assert.equal(error.message, '10 нет на ребре кубика');
-    }
-});
 
 it('should throw error when not entered 5 numbers', () => {
     try {
@@ -109,6 +93,22 @@ it('should throw error when count is not a number', () => {
         assert.equal(error.message, 'Введено не число');
     }
 });	
+it('should throw error when count is not a number', () => {
+    try {
+        getPokerHand([1, 4, 3, 5, 'hdhd' ]);
+        throw new Error('`getPokerHand` should throw error')
+    } catch (error) {
+        assert.equal(error.message, 'Введено не число');
+    }
+});
+it('should throw error when count is not a number', () => {
+    try {
+        getPokerHand([1, 4, null, 5, 6 ]);
+        throw new Error('`getPokerHand` should throw error')
+    } catch (error) {
+        assert.equal(error.message, 'Введено не число');
+    }
+});		
 	
 it('should throw error when count is not a array', () => {
     try {
