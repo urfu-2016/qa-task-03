@@ -17,7 +17,6 @@ function getPokerHand(dice) {
     if (dice.some(value => !(correctValues.includes(value)))) {
         throw new RangeError('Значения должны быть целыми числами и иметь значения от 1 до 6');
     }
-    dice.sort();
 
     var arrMax = getMaxCount(dice);
     switch (arrMax[0]) {
@@ -41,6 +40,7 @@ function getPokerHand(dice) {
  * @returns {Array} Массив из двух элементов.
  */
 function getMaxCount(dice) {
+    dice.sort();
     var maxCount1 = 0;
     var maxCount2 = 0;
     var count = 1;
