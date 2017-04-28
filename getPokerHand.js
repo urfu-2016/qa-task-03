@@ -43,10 +43,6 @@ function getPokerHand(dice) {
 		y[i] = Elem;
 		i = j;
 	}
-	if (y[0] == 5)
-	{
-		return 'Покер';
-	}
 	if (y[0] == 4 || y[1] == 4)
 	{
 		return 'Каре';
@@ -77,6 +73,6 @@ function getPokerHand(dice) {
 	{
 		return 'Наивысшее очко'
 	}
-	
+	return 'Покер'
 }
 module.exports = getPokerHand;
