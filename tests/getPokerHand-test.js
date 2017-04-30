@@ -1,44 +1,43 @@
 'use strict';
 
 const assert = require('assert');
-const getPokerHand = require('../getPokerHand').getPokerHand;
-const errorMessages = require('../getPokerHand').errorMessages;
+const getPokerHand = require('../getPokerHand');
 
 describe('getPokerHand exception tests', () => {
     it('should return exception when call func without argument', () => {
         const actual = () => getPokerHand();
 
-        assert.throws(actual, new RegExp(errorMessages.needArg));
+        assert.throws(actual, new RegExp('Функция должна получить один аргумент'));
     });
 
     it('should return exception when call func with not array argument', () => {
         const actual = () => getPokerHand('Oleg');
 
-        assert.throws(actual, new RegExp(errorMessages.argType));
+        assert.throws(actual, new RegExp('Аргумент должен являться массивом'));
     });
 
     it('should return exception when call func with array which contains less then 5 elements', () => {
         const actual = () => getPokerHand([1]);
 
-        assert.throws(actual, new RegExp(errorMessages.arrLen));
+        assert.throws(actual, new RegExp('Массив должен включать ровно 5 элементов'));
     });
 
     it('should return exception when call func with array which contains greater then 5 elements', () => {
         const actual = () => getPokerHand([1, 2, 3, 4, 5, 6]);
 
-        assert.throws(actual, new RegExp(errorMessages.arrLen));
+        assert.throws(actual, new RegExp('Массив должен включать ровно 5 элементов'));
     });
 
     it('should return exception when call func with array which contains not only integers', () => {
         const actual = () => getPokerHand([1, 2, 3, 4, '5']);
 
-        assert.throws(actual, new RegExp(errorMessages.arrNumbers));
+        assert.throws(actual, new RegExp('Все элементы массива должны быть числами'));
     });
 
     it('should return exception when call func with array which contains integers not between 1 and 6', () => {
         const actual = () => getPokerHand([1, 2, 3, 4, -1]);
 
-        assert.throws(actual, new RegExp(errorMessages.arrRange));
+        assert.throws(actual, new RegExp('Каждый элемент массива должен принимать значения от 1 до 6'));
     });
 });
 
