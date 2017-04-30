@@ -50,7 +50,7 @@ function validateDice(dice) {
 }
 
 function isValueCorrect(value) {
-    return Number.isInteger(value) && value >= 1 && value <= 5;
+    return Number.isInteger(value) && value >= 1 && value <= 6;
 }
 
 module.exports = getPokerHand;
