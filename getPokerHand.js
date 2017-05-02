@@ -12,6 +12,7 @@ function getPokerHand(dice) {
     if(!Array.isArray(dice)){
 		throw new Error('Введенный аргумент не является массивом');
 		}
+		
 	if(dice.length!==5){
 		throw new Error('Введено не 5 чисел');
 	}
@@ -37,21 +38,21 @@ function getPokerHand(dice) {
 			}
 	}
     switch(arrayRepeats.length){
-	case 1: return 'Покер'; break;
+	case 1: return 'Покер';
 	case 2: 
 	    if(arrayRepeats.indexOf(4)!== -1) 
 			return 'Каре';
         else		
 		    return 'Фулл хаус';
-		break;
+		
 	case 3: 
 	    if(arrayRepeats.indexOf(2)!== -1) 
 			return 'Две пары';
         else		
 		    return 'Тройка';
-		break;
-	case 4: return 'Пара'; break;
-	case 5: return 'Наивысшее очко'; break;	
+		
+	case 4: return 'Пара';
+	case 5: return 'Наивысшее очко';
 	}
 	
 	
