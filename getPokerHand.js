@@ -23,11 +23,11 @@ function getPokerHand(dice) {
 	var arrayRepeats = new Array();
 	
 	for ( i=0; i<5; i++){
-		if(isNaN(dice[i])|| typeof dice[i] =="boolean"|| dice[i]==null){
-			throw new Error('Введено не число');
+		if(!Number.isInteger(dice[i])){
+			throw new Error('Введено не число или число не является целым');
 			}
 		
-		if(!Number.isInteger(dice[i])|| dice[i]<1 || dice[i]>6){
+		if(dice[i]<1 || dice[i]>6){
 			throw new Error(dice[i]+' нет на ребре кубика');
 			}
 		if( i!==4 && dice[i]==dice[i+1]){

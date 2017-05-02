@@ -39,7 +39,7 @@ describe('getPokerHand', () => {
     });
 
 	
-	it('should throw error when entered is not an integer in the range from 1 to 6', () => {
+	it('should throw error when entered is not in the range from 1 to 6', () => {
     try {
         getPokerHand([1, 5, 3, 7, 4]);
         throw new Error('`getPokerHand` should throw error')
@@ -48,16 +48,16 @@ describe('getPokerHand', () => {
     }
 });
 	
-	it('should throw error when entered is not an integer in the range from 1 to 6', () => {
+	it('should throw error when entered is not in the range from 1 to 6', () => {
     try {
         getPokerHand([1, 5.6 , 3, 7, 4]);
         throw new Error('`getPokerHand` should throw error')
     } catch (error) {
-        assert.equal(error.message, '5.6 нет на ребре кубика');
+        assert.equal(error.message, 'Введено не число или число не является целым');
     }
 });
 	
-	it('should throw error when entered is not an integer in the range from 1 to 6', () => {
+	it('should throw error when entered is not in the range from 1 to 6', () => {
     try {
         getPokerHand([1, 0 , 3, 7, 4]);
         throw new Error('`getPokerHand` should throw error')
@@ -85,28 +85,28 @@ it('should throw error when not entered 5 numbers', () => {
     }
 });
 	
-it('should throw error when count is not a number', () => {
+it('should throw error when count is not a number or is not an integer', () => {
     try {
         getPokerHand([1, 4, 3, 5,true ]);
         throw new Error('`getPokerHand` should throw error')
     } catch (error) {
-        assert.equal(error.message, 'Введено не число');
+        assert.equal(error.message, 'Введено не число или число не является целым');
     }
 });	
-it('should throw error when count is not a number', () => {
+it('should throw error when count is not a number or is not an integer', () => {
     try {
         getPokerHand([1, 4, 3, 5, 'hdhd' ]);
         throw new Error('`getPokerHand` should throw error')
     } catch (error) {
-        assert.equal(error.message, 'Введено не число');
+        assert.equal(error.message, 'Введено не число или число не является целым');
     }
 });
-it('should throw error when count is not a number', () => {
+it('should throw error when count is not a number or is not an integer', () => {
     try {
         getPokerHand([1, 4, null, 5, 6 ]);
         throw new Error('`getPokerHand` should throw error')
     } catch (error) {
-        assert.equal(error.message, 'Введено не число');
+        assert.equal(error.message, 'Введено не число или число не является целым');
     }
 });		
 	
