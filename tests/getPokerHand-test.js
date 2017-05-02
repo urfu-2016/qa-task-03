@@ -59,57 +59,78 @@ describe('getPokerHand', () => {
 });
 
 describe('getPokerHand', () => {
-    it('should return `Не массив` for 5', () => {
-        const actual = getPokerHand(5);
-
-        assert.equal(actual, 'Не массив');
+    it('should throw error `Не массив` for 5', () => {
+	try{
+		const actual = getPokerHand(5);
+		throw new Error('`getPokerHand` should throw error');
+		} catch (error) {
+			assert.equal(error.message, 'Не массив');
+		}
     })
 });
 
 describe('getPokerHand', () => {
-    it('should return `Элементов меньше 5-ти` for [1, 1, 4, 5]', () => {
-        const actual = getPokerHand([1, 1, 4, 5]);
-
-        assert.equal(actual, 'Элементов меньше 5-ти');
+    it('should throw error `Элементов меньше 5-ти` for [1, 1, 4, 5]', () => {
+        try {
+		const actual = getPokerHand([1, 1, 4, 5]);
+	 	throw new Error('`getPokerHand` should throw error');
+	 	} catch (error) {
+        		assert.equal(error.message, 'Элементов меньше 5-ти');
+	}
     })
 });
 
 describe('getPokerHand', () => {
-    it('should return `Элементов больше 5-ти` for [5, 2, 3, 5, 1, 1, 5]', () => {
-        const actual = getPokerHand([5, 2, 3, 5, 1, 1, 5]);
-
-        assert.equal(actual, 'Элементов больше 5-ти');
+    it('should throw error `Элементов больше 5-ти` for [5, 2, 3, 5, 1, 1, 5]', () => {
+	try{
+        	const actual = getPokerHand([5, 2, 3, 5, 1, 1, 5]);
+		throw new Error('`getPokerHand` should throw error');
+		} catch (error) {
+        		assert.equal(error.message, 'Элементов больше 5-ти');
+		}
     })
 });
 
 describe('getPokerHand', () => {
-    it('should return `Не массив` for ', () => {
-        const actual = getPokerHand();
-
-        assert.equal(actual, 'Не массив');
+    it('should throw error `Не массив` for ', () => {
+	try{
+		const actual = getPokerHand();
+		throw new Error('`getPokerHand` should throw error');
+		} catch (error) {
+			assert.equal(error.message, 'Не массив');
+		}
     })
 });
 
 describe('getPokerHand', () => {
-    it('should return `Массив содержит элемент, не являющийся числом` for ["a", "b", "c", "d", "e"]', () => {
-        const actual = getPokerHand(["a", "b", "c", "d", "e"]);
-
-        assert.equal(actual, 'Массив содержит элемент, не являющийся числом');
+    it('should throw error `Массив содержит элемент, не являющийся числом` for ["a", "b", "c", "d", "e"]', () => {
+	try{
+		const actual = getPokerHand(["a", "b", "c", "d", "e"]);
+		throw new Error('`getPokerHand` should throw error');
+	} catch (error) {
+        	assert.equal(error.message, 'Массив содержит элемент, не являющийся числом');
+	}
     })
 });
 
 describe('getPokerHand', () => {
-    it('should return `Массив содержит элемент, больший 6` for [1, 2, 3, 4, 7]', () => {
-        const actual = getPokerHand([1, 2, 3, 4, 7]);
-
-        assert.equal(actual, 'Массив содержит элемент, больший 6');
+    it('should throw error `Массив содержит элемент, больший 6` for [1, 2, 3, 4, 7]', () => {
+	try{
+        	const actual = getPokerHand([1, 2, 3, 4, 7]);
+		throw new Error('`getPokerHand` should throw error');
+	} catch (error) {
+        assert.equal(error.message, 'Массив содержит элемент, больший 6');
+	}
     })
 });
 
 describe('getPokerHand', () => {
-    it('should return `Массив содержит элемент, меньший 1` for [0, 2, 3, 4, 2]', () => {
-        const actual = getPokerHand([0, 2, 3, 4, 2]);
-
-        assert.equal(actual, 'Массив содержит элемент, меньший 1');
+    it('should throw error `Массив содержит элемент, меньший 1` for [0, 2, 3, 4, 2]', () => {
+	try{
+	        const actual = getPokerHand([0, 2, 3, 4, 2]);
+		throw new Error('`getPokerHand` should throw error');
+	} catch (error) {
+        assert.equal(error.message, 'Массив содержит элемент, меньший 1');
+	}
     })
 });
