@@ -7,12 +7,12 @@
 function getPokerHand(dice) {
     // Напишите ваш замечательный код здесь
 	if (arguments.length !== 1)
-		throw new Error('Неверное число аргументов');
+		throw new Error('Ожидается 1 аргумент');
 		
 	if (!Array.isArray(dice))
 	        throw new Error('Ожидается массив');
 	if (dice.length !== 5)
-	    throw new Error('Число аргументов  должгно быть равно 5');
+	    throw new Error('Число элементов в массиве должно быть равно 5');
 	var repeat_number = [0,0,0,0,0,0];
 
     dice.forEach(function(item) {
