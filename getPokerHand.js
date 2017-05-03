@@ -7,36 +7,29 @@
  */
 function getPokerHand(dice) {
     // Напишите ваш замечательный код здесь
+    if(!Array.isArray(dice)) {
+        throw new Error('Передан не массив');
+    }
     var arrayDice = [0, 0, 0, 0, 0 ,0, 0];
     if (dice.length != 5) {
         throw new Error('Кубиков должно быть ровно 5');
     }
     for(var i = 0; i < 5; i++) {
         if (typeof(dice[i]) != 'number') {
-            throw new Error('Бракованный кубик! На кубиках должны быть числа 1-6');
+            throw new Error('На ваших кубиках не числа.');
         }
-        if (dice[i] > 6 || dice[i] < 1) {
-            throw new Error('Бракованный кубик! На кубиках должны быть числа 1-6');
+        if (dice[i] > 6 || dice[i] < 1 || dice[i].toString().indexOf('.') != -1) {
+            throw new Error('Бракованный кубик! На кубиках должны быть целые числа 1-6');
         }
         arrayDice[dice[i]]++;
     }
-    var combination = 'none';
     var setDice = new Set();
     var royalFlush = 0;
     for(var i = 1; i < arrayDice.length; i++) {
         if ((setDice.has(arrayDice[i])) && (arrayDice[i] === 2)) {
             return ('Две пары');
-        } else {
-            setDice.add(arrayDice[i]);
         }
-        if (arrayDice[i] === 1) {
-            royalFlush++;
-        } else if (royalFlush < 5) {
-            royalFlush = 0;
-        }
-    }
-    if (royalFlush === 5) {
-        return 'Наивысшее очко!'
+        setDice.add(arrayDice[i]);
     }
     if (setDice.has(3) && setDice.has(2)) {
         return 'Фулл хаус';
@@ -53,7 +46,7 @@ function getPokerHand(dice) {
     if (setDice.has(3)) {
         return 'Тройка';
     }
-    return 'Увы ничего'
+    return 'Наивысшее очко!'
 }
 
 module.exports = getPokerHand;
