@@ -4,7 +4,20 @@
  * @param {Array} dice пять костей, для которых нужно определить комбинацию
  * @returns {String} название комбинации
  */
+ 
+function checkDiceCorrect(dice) {
+    if (!(dice instanceof Array))
+        throw new Error("Dice is not an array");
+    if (dice.length != 5)
+        throw new Error("Dice length is not 5");
+    for (var i = 0; i < 5; i++) {
+        if (!(Number.isInteger(dice[i])))
+            throw new Error("Dice contains non-integer value");
+    }
+}
+ 
 function getPokerHand(dice) {
+    checkDiceCorrect(dice);
     // Напишите ваш замечательный код здесь
     //TODO: check dice correctness
     if (hasPoker(dice))
