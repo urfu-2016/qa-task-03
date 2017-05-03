@@ -18,22 +18,26 @@ function getPokerHand(dice) {
     // Напишите ваш замечательный код здесь
     //Проверка на то, что входные данные: 1)массив, 
     //                                    2)длина 5,
-    //                                    3)элементы - целые числа от 1 до 6
+    //                                    3)элементы - целые числа
+    //                                    4)элементы - числа от 1 до 6
     if (!(dice instanceof Array))
     	throw new Error('Необходимо подавать массив');
 
     if (!(dice.length == 5))
     	throw new Error('Массив должен состоять из 5 элементов');
+    
+    if (!(isArrayOfInteger(dice) == 0))
+    	throw new Error('Элементы должны быть целые числа');
 
-    if (!(isArrayOfIntegerFromTo(dice, 1, 6) == 0))
-    	throw new Error('Элементы должны быть целые числа от 1 до 6');
+    if (!(isArrayFromTo(dice, 1, 6) == 0))
+    	throw new Error('Элементы должны быть числа от 1 до 6');
 
     var sortedDice = dice.sort();
     var counterOfDifferences = 0;
     var indexOfDifference = 1;
 
     for (var i = 0; i < sortedDice.length - 1; i++) {
-    	if (!(sortedDice[i] == sortedDice[i+1])) {
+    	if (sortedDice[i] != sortedDice[i+1]) {
     		counterOfDifferences += 1;
     		indexOfDifference *= i+1;
     	}
@@ -51,23 +55,24 @@ function getPokerHand(dice) {
 
 }
 
-function isArrayOfIntegerFromTo(arr, lowerBorder, upperBorder) {
-    if (!(arr instanceof Array))
-	throw new Error('Необходимо подавать массив (1-ый аргумент)');
-
-    if (!(lowerBorder instanceof Integer))
-	throw new Error('Необходимо подавать нижнюю границу целым числом (2-ой аргумент)');
-
-    if (!(upperBorder instanceof Integer))
-	throw new Error('Необходимо подавать верхнюю границу целым числом (3-ий аргумент)');
-
-	var errorCounter = 0;
+function isArrayOfInteger(arr) {
+	var errorOfTypeCounter = 0;
 	for (var i = arr.length - 1; i >= 0; i--) {
-		if ((!(arr[i] instanceof Integer)) || (!(arr[i] <= upperBorder)) || (!(arr[i] >= lowerBorder))) {
-			errorCounter += 1;
+		if (!Number.isInteger(arr[i])) {
+			errorOfTypeCounter += 1;
 		}
 	}
-	return errorCounter;
+	return errorOfTypeCounter;
+}
+
+function isArrayFromTo(arr, lowerBorder, upperBorder) {
+	var errorOfBorderCounter = 0;
+	for (var i = arr.length - 1; i >= 0; i--) {
+		if ((!(arr[i] <= upperBorder)) || (!(arr[i] >= lowerBorder))) {
+			errorOfBorderCounter += 1;
+		}
+	}
+	return errorOfBorderCounter;
 }
 
 module.exports = getPokerHand;
