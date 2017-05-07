@@ -4,13 +4,11 @@ const DICES_HASH_TO_DESCRIPTION = {
     13: 'Фулл хаус',
     11: 'Тройка',
     9: 'Две пары',
-    7: 'Пара'
+    7: 'Пара',
+    5: 'Наивысшее очко'
 };
 
-function checkThatDicesIsValid(dices) {
-    if (arguments.length !== 1) {
-        throw new Error(`Expected exactly one argument, but ${arguments.length} is provided`);
-    }
+function validateDices(dices) {
     if (!(dices instanceof Array)) {
         throw new TypeError('Your dices is not an array');
     }
@@ -24,7 +22,7 @@ function checkThatDicesIsValid(dices) {
     }
 
     if (dices.some(dice => dice < 1 || dice > 6)) {
-        throw new RangeError('Dice value must be in range 1..6');
+        throw new RangeError('All dice values must be in range 1..6');
     }
 
     if (dices.some(dice => dice % 1 !== 0)) {
@@ -40,26 +38,24 @@ function checkThatDicesIsValid(dices) {
  */
 function getPokerHand(dices) {
     // Напишите ваш замечательный код здесь
+    if (arguments.length !== 1) {
+        throw new Error(`Expected exactly 1 argument, but ${arguments.length} is provided`);
+    }
 
-    checkThatDicesIsValid(dices);
+    validateDices(dices);
 
-    return DICES_HASH_TO_DESCRIPTION[calculateDicesHash(dices)] || 'Наивысшее очко';
+    return DICES_HASH_TO_DESCRIPTION[calculateDicesHash(dices)];
 }
 
-const calculateDicesHash = dices => dices
-    .sort((x, y) => x - y)
-    .reduce((res, dice) => {
-        let current = res.pop() || {dice, count: 0};
-        if (current.dice !== dice) {
-            res.push(current);
-            current = {dice, count: 0};
-        }
-        current.count++;
-        res.push(current);
-
-        return res;
-    }, [])
-    .map(x => x.count * x.count)
-    .reduce((x, y) => x + y);
+const calculateDicesHash = dices => {
+    const counts = dices
+        .reduce((res, dice) => {
+            res[dice] = (res[dice] || 0) + 1;
+            return res;
+        }, {});
+    return Object.keys(counts)
+        .map(key => counts[key] * counts[key])
+        .reduce((x, y) => x + y);
+};
 
 module.exports = getPokerHand;
