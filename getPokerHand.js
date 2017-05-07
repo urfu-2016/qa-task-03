@@ -37,7 +37,6 @@ function validateDices(dices) {
  * @returns {String} название комбинации
  */
 function getPokerHand(dices) {
-    // Напишите ваш замечательный код здесь
     if (arguments.length !== 1) {
         throw new Error(`Expected exactly 1 argument, but ${arguments.length} is provided`);
     }
@@ -48,14 +47,10 @@ function getPokerHand(dices) {
 }
 
 const calculateDicesHash = dices => {
-    const counts = dices
-        .reduce((res, dice) => {
-            res[dice] = (res[dice] || 0) + 1;
-            return res;
-        }, {});
-    return Object.keys(counts)
-        .map(key => counts[key] * counts[key])
-        .reduce((x, y) => x + y);
+    const diceFrequencies = {};
+    dices.forEach(dice => diceFrequencies[dice] = (diceFrequencies[dice] || 0) + 1);
+    return Object.keys(diceFrequencies)
+        .reduce((hash, key) => hash + Math.pow(diceFrequencies[key], 2), 0);
 };
 
 module.exports = getPokerHand;
