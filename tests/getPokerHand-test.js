@@ -7,137 +7,71 @@ describe('getPokerHand', () => {
 
         assert.equal(actual, 'Покер');
     });
-//Каре
 	it('should return `Каре` for [1, 1, 1, 1, 2]', () => {
         const actual = getPokerHand([1, 1, 1, 1, 2]);
 
         assert.equal(actual, 'Каре');
     });
-	it('should return `Каре` for [1, 2, 2, 2, 2]', () => {
-        const actual = getPokerHand([1, 2, 2, 2, 2]);
-
-        assert.equal(actual, 'Каре');
-    });
-//Фулл хаус
 	it('should return `Фулл хаус` for [1, 1, 1, 2, 2]', () => {
         const actual = getPokerHand([1, 1, 1, 2, 2]);
 
         assert.equal(actual, 'Фулл хаус');
     });
-	it('should return `Фулл хаус` for [1, 1, 2, 2, 2]', () => {
-        const actual = getPokerHand([1, 1, 2, 2, 2]);
-
-        assert.equal(actual, 'Фулл хаус');
-    });
-//Тройка
 	it('should return `Тройка` for [[1, 1, 1, 2, 3]', () => {
         const actual = getPokerHand([1, 1, 1, 2, 3]);
 
         assert.equal(actual, 'Тройка');
     });
-	it('should return `Тройка` for [[1, 2, 2, 2, 3]', () => {
-        const actual = getPokerHand([1, 2, 2, 2, 3]);
-
-        assert.equal(actual, 'Тройка');
-    });
-	it('should return `Тройка` for [[3, 2, 3, 3, 1]', () => {
-        const actual = getPokerHand([3, 2, 3, 3, 1]);
-
-        assert.equal(actual, 'Тройка');
-    });
-//Две пары
 	it('should return `Две пары` for [1, 1, 2, 2, 3]', () => {
         const actual = getPokerHand([1, 1, 2, 2, 3]);
 
         assert.equal(actual, 'Две пары');
-    });
-	it('should return `Две пары` for [1, 1, 2, 3, 3]', () => {
-        const actual = getPokerHand([1, 1, 2, 3, 3]);
-
-        assert.equal(actual, 'Две пары');
-    });
-	it('should return `Две пары` for [1, 1, 2, 2, 3]', () => {
-        const actual = getPokerHand([1, 2, 2, 3, 3]);
-
-        assert.equal(actual, 'Две пары');
-    });
-//Пара
+	});
 	it('should return `Пара` for [1, 1, 2, 3, 4]', () => {
         const actual = getPokerHand([1, 1, 2, 3, 4]);
 
         assert.equal(actual, 'Пара');
     });
-	it('should return `Пара` for [1, 2, 2, 3, 4]', () => {
-        const actual = getPokerHand([1, 2, 2, 3, 4]);
-
-        assert.equal(actual, 'Пара');
-    });
-	it('should return `Пара` for [1, 2, 3, 3, 4]', () => {
-        const actual = getPokerHand([1, 2, 3, 3, 4]);
-
-        assert.equal(actual, 'Пара');
-    });
-	it('should return `Пара` for [1, 2, 3, 4, 4]', () => {
-        const actual = getPokerHand([1, 2, 3, 4, 4]);
-
-        assert.equal(actual, 'Пара');
-    });
-//Наивысшее очко
 	it('should return `Наивысшее очко` for [1, 2, 3, 4, 5]', () => {
         const actual = getPokerHand([1, 2, 3, 4, 5]);
 
         assert.equal(actual, 'Наивысшее очко');
     });
-//Неверная длинна
-	it('should return `Массив неверной длинны, должно быть 5 костей` for [1, 2, 3, 4]', () => {
+	it('should return `Массив неверной длины, должно быть 5 костей` for [1, 2, 3, 4]', () => {
         const actual = getPokerHand([1, 2, 3, 4]);
 
         assert.equal(actual, 'Должно быть 5 костей');
     });
-	it('should return `Массив неверной длинны, должно быть 5 костей` for [1, 2, 3, 4, 5, 6]', () => {
-        const actual = getPokerHand([1, 2, 3, 4, 5, 6]);
+	it('should return `В массиве могут быть только целые числа от 1 до 6` for [1, 2, 3, 4, "g"]', () => {
+        const actual = getPokerHand([1, 2, 3, 4, "g"]);
+
+        assert.equal(actual, 'В массиве могут быть только целые числа от 1 до 6');
+    });
+	it('should return `На вход поступил не массив` for "1"', () => {
+        const actual = getPokerHand("1");
+
+        assert.equal(actual, 'На вход поступил не массив');
+    });
+	it('should return `Должно быть 5 костей` for []', () => {
+        const actual = getPokerHand([]);
 
         assert.equal(actual, 'Должно быть 5 костей');
     });
-//NaN
-	it('should return `В массиве могут быть только числа` for [1, 2, 3, 4, g]', () => {
-        const actual = getPokerHand([1, 2, 3, 4, "g"]);
-
-        assert.equal(actual, 'В массиве могут быть только целые положительные числа');
-    });
-	it('should return `В массиве могут быть только числа` for [1, 2, 3, 4, 1g]', () => {
-        const actual = getPokerHand([1, 2, 3, 4, "123g"]);
-
-        assert.equal(actual, 'В массиве могут быть только целые положительные числа');
-    });
-	it('should return `Не массив` for "1"', () => {
-        const actual = getPokerHand("1");
-
-        assert.equal(actual, 'Не массив');
-    });
-//Пустой массив
-	it('should return `Пустой массив` for []', () => {
-        const actual = getPokerHand([]);
-
-        assert.equal(actual, 'Пустой массив');
-    });
-//Числа не больше 6 и не меньше 1 целые
-	it('should return `Числа не больше 6 и не меньше 1 целые` for [1, 8, 2, 3, 4]', () => {
+	it('should return `В массиве могут быть только целые числа от 1 до 6` for [1, 8, 2, 3, 4]', () => {
         const actual = getPokerHand([1, 8, 2, 3, 4]);
 
-        assert.equal(actual, 'В массиве могут быть только целые положительные числа');
+        assert.equal(actual, 'В массиве могут быть только целые числа от 1 до 6');
     });
-	it('should return `Числа не больше 6 и не меньше 1 целые` for [1, -1, 2, 3, 4]', () => {
+	it('should return `В массиве могут быть только целые числа от 1 до 6` for [1, -1, 2, 3, 4]', () => {
         const actual = getPokerHand([1, -1, 2, 3, 4]);
 
-        assert.equal(actual, 'В массиве могут быть только целые положительные числа');
+        assert.equal(actual, 'В массиве могут быть только целые числа от 1 до 6');
     });
-	it('should return `Числа не больше 6 и не меньше 1 целые` for [1, 1.1, 2, 3, 4]', () => {
+	it('should return `В массиве могут быть только целые числа от 1 до 6` for [1, 1.1, 2, 3, 4]', () => {
         const actual = getPokerHand([1, -1, 2, 3, 4]);
 
-        assert.equal(actual, 'В массиве могут быть только целые положительные числа');
+        assert.equal(actual, 'В массиве могут быть только целые числа от 1 до 6');
     });
-//Больше 1 аргумента
 	it('should return `Должен быть ровно 1 аргумент` for Nothing', () => {
         const actual = getPokerHand();
 
@@ -148,5 +82,4 @@ describe('getPokerHand', () => {
 
         assert.equal(actual, 'Должен быть ровно 1 аргумент');
     });
-    // Напишите тесты на ваш замечательный код здесь
 });

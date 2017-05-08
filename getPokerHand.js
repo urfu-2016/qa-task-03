@@ -1,25 +1,14 @@
-/**
- * Определение комбинации в броске
- *
- * @param {Array} dice пять костей, для которых нужно определить комбинацию
- * @returns {String} название комбинации
- */
 function getPokerHand(dice) {
-    // Напишите ваш замечательный код здесь
 	if (arguments.length != 1 )
 	{
 		return 'Должен быть ровно 1 аргумент'
 	}
 	if (!Array.isArray(dice))
 	{
-		return 'Не массив'
+		return 'На вход поступил не массив'
 	}
 	dice.sort();
 	var count = dice.length;
-	if (count == 0)
-	{
-		return 'Пустой массив';
-	}
 	if (count != 5)
 	{
 		return 'Должно быть 5 костей';
@@ -30,9 +19,9 @@ function getPokerHand(dice) {
 	while ( i < count)
 	{
 		x = dice[i];
-		if (isNaN(x) || (x > 6 || x < 1) || !Number.isInteger(x))
+		if ((x > 6 || x < 1) || !Number.isInteger(x))
 		{
-			return 'В массиве могут быть только целые положительные числа'
+			return ('В массиве могут быть только целые числа от 1 до 6');
 		}
 		var Elem = 0;
 		while (x == dice[j])
@@ -43,6 +32,7 @@ function getPokerHand(dice) {
 		y[i] = Elem;
 		i = j;
 	}
+	y.sort();
 	if (y[0] == 5)
 	{
 		return 'Покер';
@@ -51,32 +41,24 @@ function getPokerHand(dice) {
 	{
 		return 'Каре';
 	}
-	if ((y[0] == 3 && y[3] == 2)
-		||(y[0] == 2 && y[2] == 3))
+	if (y[0] == 2 && y[1] == 3)
 	{
 		return 'Фулл хаус';
 	}
-	if ((y[0] == 3 && y[3] == 1 && y[4] == 1) || (y[0] == 1 && y[1] == 3 && y[4] == 1) || (y[0] == 1 && y[1] == 1 && y[2] == 3))
+	if (y[0] == 1 && y[1] == 1 && y[2] == 3)
 	{
 		return 'Тройка';
 	}
-	if ((y[0] == 2 && y[2] == 1 && y[3] == 1 && y[4] == 1)
-		|| (y[0] == 1 && y[1] == 2 && y[3] == 1 && y[4] == 1)
-		|| (y[0] == 1 && y[1] == 1 && y[2] == 2 && y[4] == 1)
-		|| (y[0] == 1 && y[1] == 1 && y[2] == 1 && y[3] == 2))
+	if (y[0] == 1 && y[1] == 1 && y[2] == 1 && y[3] == 2)
 	{
 		return 'Пара'
 	}
-	if ((y[0] == 2 && y[2] == 2)
-		|| (y[0] == 2 && y[3] == 2)
-		|| (y[1] == 2 && y[3] == 2))
+	if (y[1] == 2 && y[2] == 2)
 	{
 		return 'Две пары'
 	}
-	if (y[0] == 1 && y[1] == 1 && y[2] == 1 && y[3] == 1)
-	{
-		return 'Наивысшее очко'
-	}
+	
+	return 'Наивысшее очко'
 	
 }
 module.exports = getPokerHand;
