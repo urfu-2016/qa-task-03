@@ -13,6 +13,8 @@ function checkDiceCorrect(dice) {
     for (var i = 0; i < 5; i++) {
         if (!(Number.isInteger(dice[i])))
             throw new Error("Dice contains non-integer value");
+        if (!(1 <= dice[i] && dice[i] <= 6))
+            throw new Error("Dice contains value not from range 1..6");
     }
 }
  
@@ -20,43 +22,19 @@ function getPokerHand(dice) {
     checkDiceCorrect(dice);
     // Напишите ваш замечательный код здесь
     //TODO: check dice correctness
-    if (hasPoker(dice))
+    if (hasEqualValues(dice))
         return 'Покер';
-    if (hasFour(dice))
+    if (splitDice(dice, 4, dice => true))
         return 'Каре';
-    if (hasFullHouse(dice))
+    if (splitDice(dice, 3, dice => hasEqualValues(dice)))
         return 'Фулл хаус';
-    if (hasSet(dice))
+    if (splitDice(dice, 3, dice => true))
         return 'Тройка';
-    if (hasTwoPair(dice))
+    if (splitDice(dice, 2, dice => splitDice(dice, 2, dice => true) ))
         return 'Две пары';
-    if (hasPair(dice))
+    if (splitDice(dice, 2, dice => true))
         return 'Пара';
     return 'Наивысшее очко';
-}
-
-function hasPoker(dice) {
-    return hasEqualValues(dice);
-}
-
-function hasFour(dice) {
-    return splitDice(dice, 4, dice => true);
-}
-
-function hasFullHouse(dice) {
-    return splitDice(dice, 3, dice => hasEqualValues(dice));
-}
-
-function hasSet(dice) {
-    return splitDice(dice, 3, dice => true);
-}
-
-function hasTwoPair(dice) {
-    return splitDice(dice, 2, dice => splitDice(dice, 2, dice => true) );
-}
-
-function hasPair(dice) {
-    return splitDice(dice, 2, dice => true);
 }
 
 function hasEqualValues(dice) {
