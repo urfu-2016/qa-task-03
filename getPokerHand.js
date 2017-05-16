@@ -42,8 +42,12 @@ function checkArray(array) {
         throw new Error("Длина входного массива должна быть равна 5");
     
     array.forEach(function(element) {
-        if (!(element > 0 && element < 7 && Number.isInteger(element) && element ^ 0 === element))
-            throw new Error("Элементами массива должны быть целые числа в интервале от 1 до 6");
+		if (!Number.isInteger(element)) {
+			throw new Error("Элементами массива должны быть целые числа");
+		}
+        if (!(element > 0 && element < 7)) {
+            throw new Error("Элементами массива должны быть числа в интервале от 1 до 6");
+		}
     });
 
 }
